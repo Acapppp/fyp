@@ -1,228 +1,116 @@
 <?php
-include('database/connection.php');
+    include('database/connection.php');
 
-$display = "SELECT custname, custic, custphone, payment, price, regdate 
-            FROM custinfo";
+    $display = "SELECT custname, custic, custphone, payment, price, regdate FROM report";
 
-$resultdis = $con->query($display);
+    $resultdis = $con->query($display);
 
-// Initialize total price variable
-$totalPrice = 0;
+    // Initialize total price variable
+    $totalPrice = 0;
 
-if(isset($_POST['btnsearch'])){
-    $search = $_POST['namesearch'];
-    $sqlsearch = "SELECT * FROM report WHERE custic LIKE '$search%'";
-    $resultdis = $con->query($sqlsearch);
-}
-
+    if(isset($_POST['btnsearch'])) {
+        $search = $_POST['namesearch'];
+        $sqlsearch = "SELECT * FROM report WHERE custic LIKE '$search%'";
+        $resultdis = $con->query($sqlsearch);
+    }
 ?>
 
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report | Baam Gadget</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
-    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="admin.css">
+    <style>
+        h1{
+            text-align: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .card-body {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .table th, .table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .total-row td {
+            border-top: 2px solid #000;
+            font-weight: bold;
+        }
+        #printButton {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+    <title>Document</title>
 </head>
-
+<h1>Sale Report</h1>
 <body>
-    <div class="wrapper">
-        <aside id="sidebar" class="js-sidebar">
-            <!-- Content For Sidebar -->
-            <div class="h-100">
-                <div class="sidebar-logo">
-                    <a href="admin.php">Baam GADGET</a>
-                </div>
-                <ul class="sidebar-nav">
-                    <li class="sidebar-header">
-                        Administration
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="admin.php" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
-                            Customer
-                        </a>
-                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="customerinformation.php" class="sidebar-link">Customer Information</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
-                            Staff
-                        </a>
-                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="registerstaff.php" class="sidebar-link">Register Staff</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="staffinformation.php" class="sidebar-link">Staff Information</a>
-                            </li>
-                            <!-- <li class="sidebar-item">
-                                <a href="assigntask.php" class="sidebar-link">Assign Task</a>
-                            </li> -->
-                            <!-- <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Post 3</a>
-                            </li> -->
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-sliders pe-2"></i>
-                            Auth
-                        </a>
-                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Forgot Password</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-        <div class="main">
-            <nav class="navbar navbar-expand px-3 border-bottom">
-                <button class="btn" id="sidebar-toggle" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse navbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="image/profile.jpg" class="avatar img-fluid rounded" alt="">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Setting</a>
-                                <a href="login.php" class="dropdown-item">Logout</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <main class="content px-3 py-2">
-                <div class="container-fluid">
-                    <div class="mb-3">
-                        <h4>Report Sale</h4>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-6 d-flex">
-                            <div class="card flex-fill border-0 illustration">
-                                <div class="card-body p-0 d-flex flex-fill">
-                                    <div class="row g-0 w-100">
-                                        <div class="col-6">
-                                            <div class="p-3 m-1">
-                                                <h4>Report sale</h4>
-                                                <p class="mb-0 text-muted"> Print Report Sale, Baam GADGET</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 align-self-end text-end">
-                                            <img src="image/customer-support.jpg" class="img-fluid illustration-img"
-                                                alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Table Element -->
-                    <div class="card border-0">
-                        <div class="card-header">
-                            <h5 class="card-title">
-                                Recent Customer
-                            </h5><br>
-                            <h6 class="card-subtitle text-muted">
-                                Recent orders from customer
-                            </h6>
-                        </div>
-                        <div class="card-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">IC Number</th>
-                                        <th scope="col">Phone Number</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Date</th>
+    <div class="card-body">
+        <table class="table" border="1">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">IC Number</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $count = 1;
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                    $count = 1;
-
-                                    while($data = $resultdis->fetch_assoc()) {
-                                        // Add each price to the total
-                                        $totalPrice += $data['price'];
-                                    ?>
-                                    <tr class="tr">
-                                        <td><?= $data['custname']; ?></td>
-                                        <td><?= $data['custic']; ?></td>
-                                        <td><?= $data['custphone']; ?></td>
-                                        <td>RM<?= $data['price']; ?></td>
-                                        <td><?= $data['regdate']; ?></td>
-                                    </tr>
-                                    <?php
-                                    $count++; // increment the count for each iteration
-                                    }
-                                    ?>
-                                    <!-- Display total in a separate row -->
-                                    <tr>
-                                        <td colspan="4"></td>
-                                        <td><strong>Total:</strong></td>
-                                        <td>RM<?= number_format($totalPrice, 2); ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <button type="button" class="btn btn-primary mb-3" onclick="printReceipt()">Print Receipt</button>  
-                        </div>
-                    </div>
-                </div>
-            </main>
-
-            
-            <a href="#" class="theme-toggle">
-                <i class="fa-regular fa-moon"></i>
-                <i class="fa-regular fa-sun"></i>
-            </a>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-muted">
-                        <div class="col-6 text-start">
-                            <p class="mb-0">
-                                <a href="#" class="text-muted">
-                                    <strong>Baam GADGET</strong>
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
+                    while($data = $resultdis->fetch_assoc()) {
+                        // Add each price to the total
+                        $totalPrice += $data['price'];
+                ?>
+                <tr class="tr">
+                    <td><?= $data['custname']; ?></td>
+                    <td><?= $data['custic']; ?></td>
+                    <td><?= $data['custphone']; ?></td>
+                    <td><?= $data['regdate']; ?></td>
+                    <td>RM<?= $data['price']; ?></td>
+                </tr>
+                <?php
+                    $count++; // increment the count for each iteration
+                    }
+                ?>
+                <!-- Display total in a separate row -->
+                <tr>
+                    <td colspan="3"></td>
+                    <td><strong>Total:</strong></td>
+                    <td>RM<?= number_format($totalPrice, 2); ?></td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="printButton" type="button" class="btn btn-primary mb-3" onclick="printReceipt(this);">Print Receipt</button>
     </div>
-
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="admin.js"></script>
     <script>
-        function printReceipt() {
-            // Use window.print() to trigger the browser's print dialog
+        function printReceipt(button) {
+            button.style.display = 'none';
             window.print();
         }
     </script>
 </body>
-
 </html>

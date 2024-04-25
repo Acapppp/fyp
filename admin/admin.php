@@ -149,7 +149,7 @@ if(isset ($_POST['btnsearch'])){
                                                     check report for this month
                                                 </span>
                                                 <span class="text-muted">
-                                                    <a href="#"><button>Report</button></a>
+                                                    <a href="generatereport.php"><button>Report</button></a>
                                                 </span>
                                             </div>
                                         </div>
