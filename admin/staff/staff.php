@@ -3,7 +3,7 @@ include('database/connection.php');
 
 $staffIC = $_GET['sid'];
 
-
+//try
 // Count the number of customers
 $count_query = "SELECT COUNT(*) AS total_customers FROM custinfo";
 $count_result = $con->query($count_query);
