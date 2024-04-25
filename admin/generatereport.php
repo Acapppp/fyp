@@ -50,7 +50,7 @@
             background-color: #f2f2f2;
             font-weight: bold;
         }
-        .table tr:nth-child(even) {
+        .table :ntrth-child(even) {
             background-color: #f9f9f9;
         }
         .total-row td {

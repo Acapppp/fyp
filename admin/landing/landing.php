@@ -65,11 +65,6 @@
                 <div class="col-lg-7 px-lg-5" data-aos="fade-down" data-aos-delay="500">
                     <h1 style="color: white;">BAAM GADGET REPAIR <br>TRACKING SYSTEM</h1>
                     <p class="mt-3 mb-4"><h5 style="color: white;">Track your device's repairing progress.<br>We always make everything easy for you.</h5></p>
-
-                    <div>
-                        <a href="displaytrackingno.php" class="btn mx-2 btn-primary">Get Started</a>
-                        <a href="contactus.php" class="btn mx-2 btn-secondary">Contact us</a>
-                    </div>
             </div>
         </div>
     </section>
@@ -123,45 +118,6 @@
 
     </section>
 
-    
-<section id="contact" class="min-vh-100 d-grid align-content-center py-5">
-
-<!-- Container -->
-<div class="container">
-
-    <!-- Row -->
-    <div class="row gy-4 align-items-center" data-aos="fade-down" data-aos-delay="400">
-
-    <div class="col-md-8">
-        <div><h1><strong>Shop's Gallery</strong></h1></div>
-    </div>
-
-    <div class="swiper mySwiper pb-5">
-                <div class="swiper-wrapper">
-
-                    <!-- Slide -->
-                    <div class="swiper-slide" data-aos="fade-down" data-aos-delay="400">
-                         <div class="project p-4 border-custom">
-                            <img src="images/kedai2.jpg" class="img-fluid" alt="">
-                        </div>
-                    </div>
-
-                    <!-- Slide -->
-                    <div class="swiper-slide" data-aos="fade-down" data-aos-delay="500">
-                        <div class="project p-4 border-custom">
-                            <img src="images/kedai1.jpg" class="img-fluid" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-
-
-
-
-    </div>
-</div>
-</section>
 
     <!-- Team -->
     <section id="team" class="py-5 ">

@@ -70,10 +70,6 @@
             <p class="mt-3 mb-4"><h4 style="color: grey ;">Welcome to our website! <br>We are dedicated to providing you with high-quality services.<br>
             Our team consists of passionate professionals who are committed to excellence in everything we do. Whether it's developing innovative solutions, delivering outstanding customer service, or contributing to our community, we strive for excellence every day.
             At our core, we believe in transparency, integrity, and collaboration. We value the trust our customers place in us, and we work hard to exceed their expectations.</h4></p>
-            <div>
-                <a href="displaytrackingno.php" class="btn mx-2 btn-primary">Get Started</a>
-                <a href="contactus.php" class="btn mx-2 btn-secondary">Contact us</a>
-            </div>
         </div>
 
     </div>
