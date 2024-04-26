@@ -32,6 +32,8 @@ $resultdis = $con->query($display);
     <title>Customer Information | Baam Gadget</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="admin.css">
 </head>
 
@@ -201,8 +203,39 @@ $resultdis = $con->query($display);
                                             data-regdate="<?= $data['regdate']; ?>"
                                             data-price="<?= $data['price']; ?>"
                                             data-staffusername="<?= $data['staff_username']; ?>">View</button>
-                                            <a href="removecustomer.php?cid=<?=$data['custic'];?>" onclick="return confirm('Are you sure you want to delete this data?');" class="btn btn-danger">
-                                    <i class="fas fa-trash-alt"></i>
+                                            <a href="removecustomer.php" class="btn btn-danger delete-btn" data-cid="<?=$data['custic'];?>">
+    <i class="fas fa-trash-alt"></i>
+</a>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.delete-btn').forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            var cid = this.getAttribute('data-cid');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // You can perform AJAX request or form submission to delete the data
+                    window.location.href = 'removecustomer.php?cid=' + cid;
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    );
+                }
+            });
+        });
+    });
+});
+</script>
                                 </a>
 
                                             <br>
