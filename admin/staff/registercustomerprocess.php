@@ -39,11 +39,17 @@ if(isset($_POST['btnsubmit'])){
             '$name', '$ic', '$phone', '$device', '$brand', '$model', '$problem', '$date'
         )";
 
-        if ($con->query($sqladd) === TRUE) {
-            header("Location: registercustomer.php?sid=$staffIC");
-        } else {
-            throw new Exception("Error: " . $sqladd . "<br>" . $con->error);
-        }
+if ($con->query($sqladd) === TRUE) {
+    ?>
+    <script>
+        alert("Data submitted successfully!");
+        window.location = "registercustomer.php?sid=<?php echo $staffIC; ?>";
+    </script>
+    <?php
+} else {
+    throw new Exception("Error: " . $sqladd . "<br>" . $con->error);
+}
+
     } catch (Exception $e) {
         // Handle the exception
         ?>

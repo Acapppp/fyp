@@ -1,7 +1,7 @@
 <?php
     include('database/connection.php');
 
-    $display = "SELECT custname, custic, custphone, payment, price, regdate FROM report";
+    $display = "SELECT custname, custic, custphone, payment, price, regdate FROM custinfo";
 
     $resultdis = $con->query($display);
 

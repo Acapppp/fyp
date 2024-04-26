@@ -124,10 +124,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </li>
                     <li>
     <div class="btnl">
-        <button class="logout">
+        <!-- <button class="logout">
             <img width="32" height="32" src="https://img.icons8.com/glyph-neue/32/power-off-button.png" alt="power-off-button"/>
             <a href="/admin/login.php">Logout</a>
-        </button>
+        </button> -->
     </div>
 </li>
                 </ul>
