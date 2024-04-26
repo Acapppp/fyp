@@ -254,6 +254,7 @@ $staffIC = $_GET['sid'];
         }
 
         // Function to format phone model
+          // Function to format phone model
         function formatPhoneModel() {
             const modelInput = document.querySelector('input[name="model"]');
             const words = modelInput.value.toLowerCase().split(' ');
