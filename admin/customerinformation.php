@@ -40,6 +40,7 @@ $resultdis = $con->query($display);
     <div class="wrapper">
         <aside id="sidebar" class="js-sidebar">
             <!-- Content For Sidebar -->
+            <!-- Content For Sidebar -->
             <div class="h-100">
                 <div class="sidebar-logo">
                     <a href="admin.php">Baam GADGET</a>
