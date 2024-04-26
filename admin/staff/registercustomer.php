@@ -263,6 +263,13 @@ $staffIC = $_GET['sid'];
             modelInput.value = words.join(' ');
         }
 
+        // Format problem description textarea
+        document.querySelector('textarea[name="problem"]').addEventListener('input', function(event) {
+            this.value = this.value.toLowerCase().replace(/(^| )(\w)/g, function(txt) {
+                return txt.toUpperCase();
+            });
+        });
+
         // Attach event listeners to relevant inputs
         document.querySelector('input[name="custname"]').addEventListener('input', formatName);
         document.getElementById("date-input").addEventListener("change", restrictPastDates);
