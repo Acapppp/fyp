@@ -14,6 +14,7 @@ $staffIC = $_GET['sid'];
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="staff.css">
     <link rel="stylesheet" href="form.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <style>
         .required::after{
             content:"*";
@@ -118,7 +119,7 @@ $staffIC = $_GET['sid'];
                     <!-- Registration Form -->
                     <section class="containerregform">
                         <!-- <header>Registration Form</header> -->
-                        <form action="registercustomerprocess.php?sid=<?= $staffIC; ?>" class="regform" method="post">
+                        <form action="registercustomerprocess.php?sid=<?= $staffIC; ?>" class="regform" method="post"  id="myForm">
                             <div class="input-box">
                                 <label class="required">Name</label>
                                 <input type="text" placeholder="Enter name" name="custname" required/>
@@ -211,7 +212,36 @@ $staffIC = $_GET['sid'];
                                 <label class="required">Problem Description</label>
                                 <textarea name="problem" required></textarea>
                             </div>
-                            <button name="btnsubmit">Submit</button>
+                            <!-- <button name="btnsubmit">Submit</button> -->
+                            <button type="submit" name="btnsubmit" id="submitButton">Submit</button>
+
+                            <!--Submit style -->
+                            <script>
+document.getElementById('myForm').addEventListener('submit', function(event) {
+  // Prevent the default form submission behavior
+  event.preventDefault();
+  
+  // Display SweetAlert when the form is submitted
+  Swal.fire({
+    title: "Do you want to save the changes?",
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: "Save",
+    denyButtonText: "Don't save"
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      // If confirmed, submit the form
+      document.getElementById('myForm').submit();
+      Swal.fire("Saved!", "", "success");
+    } else if (result.isDenied) {
+      // If denied, do nothing or show a message
+      Swal.fire("Changes are not saved", "", "info");
+    }
+  });
+});
+</script>
+
                         </form>
                     </section>
                 </div>

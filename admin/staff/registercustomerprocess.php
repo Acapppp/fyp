@@ -4,7 +4,7 @@ include('database/connection.php');
 
 $staffIC = $_GET['sid'];
 
-if(isset($_POST['btnsubmit'])){
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     try {
         // Retrieve form data
@@ -39,16 +39,15 @@ if(isset($_POST['btnsubmit'])){
             '$name', '$ic', '$phone', '$device', '$brand', '$model', '$problem', '$date'
         )";
 
-if ($con->query($sqladd) === TRUE) {
-    ?>
-    <script>
-        alert("Data submitted successfully!");
-        window.location = "registercustomer.php?sid=<?php echo $staffIC; ?>";
-    </script>
-    <?php
-} else {
-    throw new Exception("Error: " . $sqladd . "<br>" . $con->error);
-}
+        if ($con->query($sqladd) === TRUE) {
+            ?>
+            <script>
+                window.location = "registercustomer.php?sid=<?php echo $staffIC; ?>";
+            </script>
+            <?php
+        } else {
+            throw new Exception("Error: " . $sqladd . "<br>" . $con->error);
+        }
 
     } catch (Exception $e) {
         // Handle the exception
@@ -60,6 +59,7 @@ if ($con->query($sqladd) === TRUE) {
         <?php
     }
 } else {
-    header('location:registercustomer.php?sid=<?= $staffIC; ?>');
+    header("Location: registercustomer.php?sid=$staffIC");
+    exit();
 }
 ?>
