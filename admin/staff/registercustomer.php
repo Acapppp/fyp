@@ -119,130 +119,157 @@ $staffIC = $_GET['sid'];
                     <!-- Registration Form -->
                     <section class="containerregform">
                         <!-- <header>Registration Form</header> -->
-                        <form action="registercustomerprocess.php?sid=<?= $staffIC; ?>" class="regform" method="post"  id="myForm">
-                            <div class="input-box">
-                                <label class="required">Name</label>
-                                <input type="text" placeholder="Enter name" name="custname" required/>
-                            </div>
+                        <form action="registercustomerprocess.php?sid=<?= $staffIC; ?>" class="regform" method="post" id="myForm">
+    <div class="input-box">
+        <label class="required">Name</label>
+        <input type="text" placeholder="Enter name" name="custname" required/>
+    </div>
 
-                            <div class="input-box">
-                                <label class="required">IC Number</label>
-                                <input type="tel" placeholder="xxxxxx - xx - xxxx" name="custic" id="ic-number" onblur="icNumberFormat()" maxlength="12" required/>
-                                <script>
-                                        function formatIcNumber(value){
-                                            if(!value) return value;
-                                            const icNumber = value.replace(/[^\d]/g, '');
-                                            const icNumberLength = icNumber.length;
-                                            if (icNumberLength < 7) return icNumber; // If the length is less than 7, return the IC number as is
-                                            return `${icNumber.slice(0, 6)}-${icNumber.slice(6, 8)}-${icNumber.slice(8)}`;
-                                        }
+    <div class="input-box">
+        <label class="required">IC Number</label>
+        <input type="tel" placeholder="xxxxxx - xx - xxxx" name="custic" id="ic-number" onblur="icNumberFormat()" maxlength="12" required/>
+        <script>
+            function formatIcNumber(value){
+                if(!value) return value;
+                const icNumber = value.replace(/[^\d]/g, '');
+                const icNumberLength = icNumber.length;
+                if (icNumberLength < 7) return icNumber; // If the length is less than 7, return the IC number as is
+                return `${icNumber.slice(0, 6)}-${icNumber.slice(6, 8)}-${icNumber.slice(8)}`;
+            }
 
-                                        function icNumberFormat(){
-                                            const inputField = document.getElementById('ic-number');
-                                            const formattedInputValue = formatIcNumber(inputField.value);
-                                            inputField.value = formattedInputValue;
-                                        }
-                                </script>
-                            </div>
+            function icNumberFormat(){
+                const inputField = document.getElementById('ic-number');
+                const formattedInputValue = formatIcNumber(inputField.value);
+                inputField.value = formattedInputValue;
+            }
+        </script>
+    </div>
 
-                            <div class="column">
-                                <div class="input-box">
-                                    <label class="required">Phone Number</label>
-                                    <input placeholder="(010)-000-0000" name="custphone" id="phone-number" onkeydown="phoneNumberFormat()" maxlength="22" required/>
-                                    <script>
-                                        function formatPhoneNumber(value){
-                                            if(!value) return value;
-                                            const phoneNumber = value.replace(/[^\d]/g, '');
-                                            const phoneNumberLength = phoneNumber.length;
-                                            if(phoneNumberLength < 4) return phoneNumber;
-                                            if(phoneNumberLength < 7){
-                                                return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
-                                            }
-                                            return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
-                                        }
+    <div class="column">
+        <div class="input-box">
+            <label class="required">Phone Number</label>
+            <input placeholder="(010)-000-0000" name="custphone" id="phone-number" onkeydown="phoneNumberFormat()" maxlength="22" required/>
+            <script>
+                function formatPhoneNumber(value){
+                    if(!value) return value;
+                    const phoneNumber = value.replace(/[^\d]/g, '');
+                    const phoneNumberLength = phoneNumber.length;
+                    if(phoneNumberLength < 4) return phoneNumber;
+                    if(phoneNumberLength < 7){
+                        return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+                    }
+                    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+                }
 
-                                        function phoneNumberFormat(){
-                                            const inputField = document.getElementById('phone-number');
-                                            const formattedInputValue = formatPhoneNumber(inputField.value);
-                                            inputField.value = formattedInputValue;
-                                        }
-                                    </script>
-                                </div>
-                                <div class="input-box">
-                                    <label class="required">Date</label>
-                                    <input type="date" placeholder="Enter birth date" name="regdate" id="date-input" min="" required/>
-                                    <script>
-                                        var today = new Date().toISOString().split('T')[0];
-                                        document.getElementById("date-input").setAttribute("min", today);
-                                    </script>
-                                </div>
-                            </div>
-                            <div class="gender-box">
-                                <h3 class="required">Device</h3>
-                                <div class="gender-option">
-                                    <div class="gender">
-                                        <input type="radio" id="check-male" name="devicetype" value="Smartphone" >
-                                        <label for="check-male">Smartphone</label>
-                                    </div>
-                                    <div class="gender">
-                                        <input type="radio" id="check-female" name="devicetype" value="Tablet" >
-                                        <label for="check-female">Tablet</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="input-box address">
-                                <div class="column">
-                                    <div class="select-box">
-                                        <select name="brand" required>
-                                            <option hidden>Brand</option>
-                                            <option value="Iphone">Iphone</option>
-                                            <option value="Samsung">Samsung</option>
-                                            <option value="Oppo">Oppo</option>
-                                            <option value="Huawei">Huawei</option>
-                                            <option value="Vivo">Vivo</option>
-                                            <option value="Sony">Sony</option>
-                                            <option value="Zte">Zte</option>
-                                            <option value="Sharp">Sharp</option>
-                                            <option value="Google Pixel">Google Pixel</option>
-                                            <option value="Others">Other's (Enter model name)</option>
-                                        </select>
-                                    </div>
-                                    <input type="text" placeholder="Enter phone model" name="model" />
-                                </div><br>
-                                <label class="required">Problem Description</label>
-                                <textarea name="problem" required></textarea>
-                            </div>
-                            <!-- <button name="btnsubmit">Submit</button> -->
-                            <button type="submit" name="btnsubmit" id="submitButton">Submit</button>
+                function phoneNumberFormat(){
+                    const inputField = document.getElementById('phone-number');
+                    const formattedInputValue = formatPhoneNumber(inputField.value);
+                    inputField.value = formattedInputValue;
+                }
+            </script>
+        </div>
+        <div class="input-box">
+            <label class="required">Date</label>
+            <input type="date" placeholder="Enter birth date" name="regdate" id="date-input" min="" required/>
+            <script>
+                var today = new Date().toISOString().split('T')[0];
+                document.getElementById("date-input").setAttribute("min", today);
+            </script>
+        </div>
+    </div>
+    <div class="gender-box">
+        <h3 class="required">Device</h3>
+        <div class="gender-option">
+            <div class="gender">
+                <input type="radio" id="check-male" name="devicetype" value="Smartphone" >
+                <label for="check-male">Smartphone</label>
+            </div>
+            <div class="gender">
+                <input type="radio" id="check-female" name="devicetype" value="Tablet" >
+                <label for="check-female">Tablet</label>
+            </div>
+        </div>
+    </div>
+    <div class="input-box address">
+        <div class="column">
+            <div class="select-box">
+                <select name="brand" required>
+                    <option hidden>Brand</option>
+                    <option value="Iphone">Iphone</option>
+                    <option value="Samsung">Samsung</option>
+                    <option value="Oppo">Oppo</option>
+                    <option value="Huawei">Huawei</option>
+                    <option value="Vivo">Vivo</option>
+                    <option value="Sony">Sony</option>
+                    <option value="Zte">Zte</option>
+                    <option value="Sharp">Sharp</option>
+                    <option value="Google Pixel">Google Pixel</option>
+                    <option value="Others">Other's (Enter model name)</option>
+                </select>
+            </div>
+            <input type="text" placeholder="Enter phone model" name="model" />
+        </div><br>
+        <label class="required">Problem Description</label>
+        <textarea name="problem" required></textarea>
+    </div>
+    <!-- <button name="btnsubmit">Submit</button> -->
+    <button type="submit" name="btnsubmit" id="submitButton">Submit</button>
 
-                            <!--Submit style -->
-                            <script>
-document.getElementById('myForm').addEventListener('submit', function(event) {
-  // Prevent the default form submission behavior
-  event.preventDefault();
-  
-  // Display SweetAlert when the form is submitted
-  Swal.fire({
-    title: "Do you want to save the changes?",
-    showDenyButton: true,
-    showCancelButton: true,
-    confirmButtonText: "Save",
-    denyButtonText: "Don't save"
-  }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
-    if (result.isConfirmed) {
-      // If confirmed, submit the form
-      document.getElementById('myForm').submit();
-      Swal.fire("Saved!", "", "success");
-    } else if (result.isDenied) {
-      // If denied, do nothing or show a message
-      Swal.fire("Changes are not saved", "", "info");
-    }
-  });
-});
-</script>
+    <!--Submit style -->
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
 
-                        </form>
+            // Display SweetAlert when the form is submitted
+            Swal.fire({
+                title: "Do you want to save the changes?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: "Don't save"
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    // If confirmed, submit the form
+                    document.getElementById('myForm').submit();
+                    Swal.fire("Saved!", "", "success");
+                } else if (result.isDenied) {
+                    // If denied, do nothing or show a message
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            });
+        });
+
+        // Function to convert name to uppercase
+        function formatName() {
+            const nameInput = document.querySelector('input[name="custname"]');
+            nameInput.value = nameInput.value.toUpperCase();
+        }
+
+        // Function to ensure only future dates are selectable
+        function restrictPastDates() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById("date-input").setAttribute("min", today);
+        }
+
+        // Function to format phone model
+        function formatPhoneModel() {
+            const modelInput = document.querySelector('input[name="model"]');
+            const words = modelInput.value.toLowerCase().split(' ');
+            for (let i = 0; i < words.length; i++) {
+                words[i] = words[i].charAt(0).toUpperCase() + words[i].substring(1);
+            }
+            modelInput.value = words.join(' ');
+        }
+
+        // Attach event listeners to relevant inputs
+        document.querySelector('input[name="custname"]').addEventListener('input', formatName);
+        document.getElementById("date-input").addEventListener("change", restrictPastDates);
+        document.querySelector('input[name="model"]').addEventListener('input', formatPhoneModel);
+    </script>
+
+</form>
                     </section>
                 </div>
             </main>
