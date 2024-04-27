@@ -779,7 +779,7 @@ a.sidebar-link {
 
 .card-body .table .tr .pay{
   border-radius: 30px;
-  width: 10vh;
+  width: 12vh;
   padding: 8px;
   margin: 3px;
   font-size: 13px;
@@ -791,7 +791,7 @@ a.sidebar-link {
 
 .card-body .table .tr .status{
   border-radius: 30px;
-  width: 13vh;
+  width: 17vh;
   padding: 8px;
   margin: 3px;
   font-size: 13px;
@@ -873,7 +873,7 @@ a.sidebar-link {
 
 .col-12 .card-body{
   background: whitesmoke;
-  border: 3px solid black;
+  /* border: 3px solid black; */
   border-radius: 8px;
 }
 

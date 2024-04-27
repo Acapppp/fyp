@@ -158,10 +158,10 @@ $staff_name = $staff_data['staff_name'];
                                     <div class="d-flex align-items-start">
                                         <div class="flex-grow-1">
                                             <h4 class="mb-2">
-                                                <?php echo $total_customers; ?> Customers
+                                                <?php echo $total_customers; ?> Customers <i class="fa-solid fa-circle fa-xs" style="color: #18c91b;"></i>
                                             </h4>
                                             <h4 class="mb-2">
-                                                <?php echo $total_customers; ?> Uncomplete Task
+                                                <?php echo $total_customers; ?> Uncomplete Task <i class="fa-solid fa-circle fa-xs" style="color: #f51414;"></i>
                                             </h4>
                                             <!-- <div class="mb-0">
                                                 <span class="badge text-success me-2">

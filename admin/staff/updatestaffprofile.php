@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <main class="content px-3 py-2">
                 <!--INSERT HERE-->
                 <!--Update Profile-->
-                <div class="row gutters ">
+                <div class="row gutters">
                
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                         <div class="card h-100">
