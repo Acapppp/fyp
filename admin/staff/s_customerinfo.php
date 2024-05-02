@@ -213,15 +213,15 @@ if(isset($_POST['btnsearch'])){
                             <!-- Pagination bar -->
     <div class="pagination">
         <?php if ($current_page > 1): ?>
-            <a href="?page=<?php echo $current_page - 1; ?>">Previous</a>
+            <a href="?sid=<?= $staffIC; ?>&page=<?php echo $current_page - 1; ?>">Previous</a>
         <?php endif; ?>
         
         <?php for ($page = 1; $page <= $total_pages; $page++): ?>
-            <a href="?page=<?php echo $page; ?>" <?php echo ($page == $current_page) ? 'class="active"' : ''; ?>><?php echo $page; ?></a>
+            <a href="?sid=<?= $staffIC; ?>&page=<?php echo $page; ?>" <?php echo ($page == $current_page) ? 'class="active"' : ''; ?>><?php echo $page; ?></a>
         <?php endfor; ?>
         
         <?php if ($current_page < $total_pages): ?>
-            <a href="?page=<?php echo $current_page + 1; ?>">Next</a>
+            <a href="?sid=<?= $staffIC; ?>&page=<?php echo $current_page + 1; ?>">Next</a>
         <?php endif; ?>
     </div>
                         </div>
