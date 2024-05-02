@@ -126,7 +126,7 @@ if (isset($_POST['submit']) && !empty($_POST['trackingid'])) {
                             <div><h3>Your Phone Pricing</h3></div>
                             <div class="border-custom p-4 d-flex">
                                 <div class="ms-3">
-                                <div><h5><?= $price ?></h5></div>
+                                <div><h5>RM<?= $price ?></h5></div>
                                 </div>
                                 
                         
@@ -141,7 +141,39 @@ if (isset($_POST['submit']) && !empty($_POST['trackingid'])) {
         </div>
     </div>
 </section>
+<section id="contact" class="py-5">
 
+<!-- Container -->
+<div class="container">
+
+    <!-- Row -->
+    <div class="row align-items-center mb-3" data-aos="fade-down" data-aos-delay="400">
+
+        <!-- Col -->
+        <div class="col-md-8">
+
+            <h3>Get Notification</h3>
+        </div>
+
+    </div>
+
+        <!-- Col -->
+        <div class="col-lg-6" data-aos="fade-down" data-aos-delay="500">
+            <form action="notifyprogress.php" class="border-custom p-4" method="POST">
+                <div class="mb-3">
+                    <label class="mb-2" for="email"><h5>Email</h5></label>
+                    <input type="email" class="form-control" name="email"style="color: black;">
+                </div>
+
+                <button type="submit" class="btn btn-primary" name="notify">Notify</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
 <!-- Scroll to top -->
 <a href="#top" class="icon scroll-to-top"><i class="las la-arrow-up"></i></a>
 <script src="bootstrap.bundle.min.js"></script>
