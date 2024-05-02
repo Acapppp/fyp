@@ -1,5 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/robot-radicals');
 @import url('https://fonts.cdnfonts.com/css/babell');
+@import url('https://fonts.cdnfonts.com/css/genera-grotesk');
 
 body {
     font-family: 'ARB-218 Big Blunt MAR-50', sans-serif;
@@ -8,16 +9,18 @@ body {
 }
 
 h1{
-    font-family: 'BABELL BOLD', sans-serif;
-                                                
-                                                
-                                                
-                                                
+    font-family: 'Genera Grotesk', sans-serif;
+                                                                                           
 }
 
-h5{
-    font-family: 'BABELL BOLD', sans-serif;
-                                                
+h1 span{
+    color: yellow;
+}
+
+h5 p{
+    font-family: 'Genera Grotesk', sans-serif;
+    font-style: italic;
+    color: lightgray;
 }
 
 /* Bg */

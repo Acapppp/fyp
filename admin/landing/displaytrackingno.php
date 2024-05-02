@@ -87,7 +87,7 @@ if (isset($_POST['submit']) && !empty($_POST['trackingid'])) {
 <!-- Contact -->
 <section id="contact" class="py-5" >
     <!-- Container -->
-    <div class="container" background="images/image3.png">
+    <div class="container" background=".images/image3.png">
         <!-- Row -->
         <div class="row align-items-center mb-3" data-aos="fade-down" data-aos-delay="400">
             <!-- Col -->

@@ -43,7 +43,7 @@
                         <a class="nav-link" href="contactus.php">Contact Us</a>
                     </li>
     
-                    <a href="../login.php" class="btn btn-primary ms-lg-3">Log In</a>
+                    <a href="../login.php" class="btn btn-primary ms-lg-3">Admin</a>
     
                 </ul>
             </div>
@@ -65,8 +65,8 @@
 
                 <!-- Col -->
                 <div class="col-lg-7 px-lg-5" data-aos="fade-down" data-aos-delay="500">
-                    <h1 style="color: white;">BAAM GADGET REPAIR <br>TRACKING SYSTEM</h1>
-                    <p class="mt-3 mb-4"><h5>Track your device's repairing progress.<br>We always make everything easy for you.</h5></p>
+                    <h1>BAAM <span>GADGET</span> REPAIR <br><span>TRACKING </span>SYSTEM</h1>
+                    <h5><p>Track your device's repairing progress.<br>We always make everything easy for you.</p></h5>
             </div>
         </div>
     </section>

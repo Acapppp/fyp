@@ -27,11 +27,11 @@ body {
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('images/image3.png');
+        background-image: url('images/br3.png');
         background-size: cover;
         background-position: center;
-        filter: blur(2px);
-        -webkit-filter: blur(8px); /* For Safari */
+        /* filter: blur(2px); */
+        /* -webkit-filter: blur(5px); For Safari */
         z-index: -1; /* Ensure the background stays behind the content */
     }
 
@@ -128,7 +128,7 @@ h2 .col-md-8 {
 }
 
 body {
-  font-family: 'BABELL BOLD', sans-serif;
+  font-family: 'Genera Grotesk', sans-serif;
                                                 
     font-size: 0.875rem;
     opacity: 1;
@@ -139,7 +139,7 @@ body {
 a {
     cursor: pointer;
     text-decoration: none;
-    font-family: 'BABELL BOLD', sans-serif;
+    font-family: 'Genera Grotesk', sans-serif;
                                                 
 }
 
@@ -148,7 +148,7 @@ li {
 }
 
 h4 {
-  font-family: 'BABELL BOLD', sans-serif;
+  font-family: 'Genera Grotesk', sans-serif;
                                                 
     font-size: 1.275rem;
     font-weight: bold;
@@ -536,7 +536,7 @@ button:hover {
 
 .demo-icons body {
   font-size: 1.6rem;
-  font-family: 'BABELL BOLD', sans-serif;
+  font-family: 'Genera Grotesk', sans-serif;
                                                 
   color: #333333;
   background: white;
@@ -663,7 +663,7 @@ button:hover {
 }
 
 body {
-  font-family: 'BABELL BOLD', sans-serif;
+  font-family: 'Genera Grotesk', sans-serif;
                                                 
     font-size: 0.875rem;
     opacity: 1;
@@ -674,7 +674,7 @@ body {
 a {
     cursor: pointer;
     text-decoration: none;
-    font-family: 'BABELL BOLD', sans-serif;
+    font-family: 'Genera Grotesk', sans-serif;
                                                 
 }
 
@@ -683,7 +683,7 @@ li {
 }
 
 h4 {
-  font-family: 'BABELL BOLD', sans-serif;
+  font-family: 'Genera Grotesk', sans-serif;
                                                 
     font-size: 1.275rem;
     color: var(--bs-emphasis-color);
@@ -936,7 +936,7 @@ a.sidebar-link {
 }
 
 .card-body .table .tr .text{
-  font-family: 'BABELL BOLD', sans-serif;
+  font-family: 'Genera Grotesk', sans-serif;
                                                 
   font-size: 20px;
   font-weight: 200;
