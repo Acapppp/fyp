@@ -51,6 +51,7 @@ if (isset($_POST['submit']) && !empty($_POST['trackingid'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <link href="https://fonts.cdnfonts.com/css/arb-218-bigblunt" rel="stylesheet">
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="color.css">
 

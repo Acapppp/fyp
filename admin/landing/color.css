@@ -1,4 +1,5 @@
-
+@import url('https://fonts.cdnfonts.com/css/robot-radicals');
+                
 .service-image.small-image {
   max-width: 300px; /* Adjust the maximum width as needed */
   max-height: 200px; /* Adjust the maximum height as needed */
@@ -38,7 +39,7 @@ body {
     .content {
         position: relative; /* Ensure content stays on top */
         z-index: 1;
-        color: #fff; /* Example text color */
+       
         text-align: center;
     }
     /* Style for the content inside the container */
@@ -48,7 +49,7 @@ body {
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
-        color: #fff; /* Example text color */
+       
     }
 
 /* Change background color to black */
@@ -117,7 +118,8 @@ footer a {
 h2 .col-md-8 {
     justify-content: center;
 }
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.cdnfonts.com/css/arb-218-bigblunt');
+
 
 *,
 ::after,
@@ -126,7 +128,8 @@ h2 .col-md-8 {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+  font-family: 'BABELL BOLD', sans-serif;
+                                                
     font-size: 0.875rem;
     opacity: 1;
     overflow-y: scroll;
@@ -136,7 +139,8 @@ body {
 a {
     cursor: pointer;
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'BABELL BOLD', sans-serif;
+                                                
 }
 
 li {
@@ -144,7 +148,8 @@ li {
 }
 
 h4 {
-    font-family: 'Poppins', sans-serif;
+  font-family: 'BABELL BOLD', sans-serif;
+                                                
     font-size: 1.275rem;
     font-weight: bold;
     color: var(--bs-emphasis-color);
@@ -531,7 +536,8 @@ button:hover {
 
 .demo-icons body {
   font-size: 1.6rem;
-  font-family: sans-serif;
+  font-family: 'BABELL BOLD', sans-serif;
+                                                
   color: #333333;
   background: white;
 }
@@ -649,7 +655,6 @@ button:hover {
   display: none;
 }
 /*from admin*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 *,
 ::after,
@@ -658,7 +663,8 @@ button:hover {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+  font-family: 'BABELL BOLD', sans-serif;
+                                                
     font-size: 0.875rem;
     opacity: 1;
     overflow-y: scroll;
@@ -668,7 +674,8 @@ body {
 a {
     cursor: pointer;
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'BABELL BOLD', sans-serif;
+                                                
 }
 
 li {
@@ -676,7 +683,8 @@ li {
 }
 
 h4 {
-    font-family: 'Poppins', sans-serif;
+  font-family: 'BABELL BOLD', sans-serif;
+                                                
     font-size: 1.275rem;
     color: var(--bs-emphasis-color);
 }
@@ -928,7 +936,8 @@ a.sidebar-link {
 }
 
 .card-body .table .tr .text{
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'BABELL BOLD', sans-serif;
+                                                
   font-size: 20px;
   font-weight: 200;
 }

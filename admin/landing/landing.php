@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="color.css">
+    <link href="https://fonts.cdnfonts.com/css/arb-218-bigblunt" rel="stylesheet">
+                
   </head>
   <body id="top" >
 
@@ -64,7 +66,7 @@
                 <!-- Col -->
                 <div class="col-lg-7 px-lg-5" data-aos="fade-down" data-aos-delay="500">
                     <h1 style="color: white;">BAAM GADGET REPAIR <br>TRACKING SYSTEM</h1>
-                    <p class="mt-3 mb-4"><h5 style="color: white;">Track your device's repairing progress.<br>We always make everything easy for you.</h5></p>
+                    <p class="mt-3 mb-4"><h5>Track your device's repairing progress.<br>We always make everything easy for you.</h5></p>
             </div>
         </div>
     </section>
