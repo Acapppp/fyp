@@ -194,7 +194,7 @@ $staff_name = $staff_data['staff_name'];
                                             data-problem="<?= $data['problem']; ?>"
                                             data-regdate="<?= $data['regdate']; ?>"
                                             >View Info</button><br>
-                                            <a href="updatestatus.php?cid=<?=$data['custic'];?>"><button class="cust">Update</button></a>
+                                            <a href="updatestatus.php?sid=<?= $staffIC ?>&cid=<?=$data['custic'];?>"><button class="cust">Update</button></a>
                                             <!-- <button class="cust" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button> -->
                                         </td>
                                     </tr>

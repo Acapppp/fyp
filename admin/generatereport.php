@@ -3,16 +3,26 @@
 
     $display = "SELECT custname, custic, custphone, payment, price, regdate FROM custinfo";
 
+    // Check if the form is submitted with start and end dates
+    if(isset($_POST['btn_filter'])) {
+        // Retrieve start date and end date from the form
+        $start_date = $_POST['start_date'];
+        $end_date = $_POST['end_date'];
+        
+        // Modify the SQL query to include a WHERE clause for date filtering
+        $display .= " WHERE regdate BETWEEN '$start_date' AND '$end_date'";
+    }
+
     $resultdis = $con->query($display);
 
     // Initialize total price variable
     $totalPrice = 0;
 
-    if(isset($_POST['btnsearch'])) {
-        $search = $_POST['namesearch'];
-        $sqlsearch = "SELECT * FROM report WHERE custic LIKE '$search%'";
-        $resultdis = $con->query($sqlsearch);
-    }
+    // if(isset($_POST['btnsearch'])) {
+    //     $search = $_POST['namesearch'];
+    //     $sqlsearch = "SELECT * FROM report WHERE custic LIKE '$search%'";
+    //     $resultdis = $con->query($sqlsearch);
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +31,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        h1{
+        h1 {
             text-align: center;
         }
         body {
@@ -50,7 +60,7 @@
             background-color: #f2f2f2;
             font-weight: bold;
         }
-        .table :ntrth-child(even) {
+        .table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
         .total-row td {
@@ -61,11 +71,24 @@
             display: block;
             margin: 20px auto;
         }
+        form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
     </style>
-    <title>Document</title>
+    <title>Sales Report</title>
 </head>
-<h1>Sale Report</h1>
+
 <body>
+<h1>Sale Report</h1>
+    <!-- Form to input start date and end date -->
+    <form method="POST" action="">
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date">
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date">
+        <button type="submit" name="btn_filter">Filter</button>
+    </form>
     <div class="card-body">
         <table class="table" border="1">
             <thead>
@@ -104,13 +127,18 @@
                 </tr>
             </tbody>
         </table>
-        <button id="printButton" type="button" class="btn btn-primary mb-3" onclick="printReceipt(this);">Print Receipt</button>
+        <button id="printButton" type="button" class="btn btn-primary mb-3" onclick="printReceipt(this);">Print Report</button>
     </div>
     <script>
-        function printReceipt(button) {
-            button.style.display = 'none';
-            window.print();
-        }
-    </script>
+    function printReceipt(button) {
+        // Hide unnecessary elements before printing
+        button.style.display = 'none'; // Hide the "Print Report" button
+        document.querySelector('form').style.display = 'none'; // Hide the form
+        window.print(); // Print the page
+        // After printing, show the hidden elements
+        button.style.display = 'block'; // Show the "Print Report" button again
+        document.querySelector('form').style.display = 'block'; // Show the form again
+    }
+</script>
 </body>
 </html>

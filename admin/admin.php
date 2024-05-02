@@ -146,7 +146,7 @@ if(isset ($_POST['btnsearch'])){
                                             </p>
                                             <div class="mb-0">
                                                 <span class="badge text-success me-2">
-                                                    check report for this month
+                                                    check report 
                                                 </span>
                                                 <span class="text-muted">
                                                     <a href="generatereport.php"><button>Report</button></a>

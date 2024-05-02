@@ -1,7 +1,7 @@
 <?php
 include('database/connection.php');
 
-// $staffIC = $_GET['sid'];
+$staffIC = $_GET['sid'];
 $cid = $_GET['cid'];
 // Count the number of customers
 $count_query = "SELECT COUNT(*) AS total_customers FROM custinfo";
@@ -133,7 +133,7 @@ $staff_name = $staff_data['staff_name'];
                         <div class="card-body">
                         <div class="container">
                             <h2>Update Progress</h2>
-                            <form action="status.php?cid=<?php echo $cid; ?>" method="post" onsubmit="return confirmAndUpdate()">
+                            <form action="status.php?sid=<?= $staffIC ?>&cid=<?php echo $cid; ?>" method="post" onsubmit="return confirmAndUpdate()">
                             <select name="status">
                                 <option value="">---Incomplete---</option>
                                 <option value="Device Receive">Device Receive</option>
