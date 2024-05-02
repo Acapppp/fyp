@@ -50,7 +50,7 @@
                                 ?>
                             </div>
                             <div class="forgot-password">
-                                <a href="#">Forgot password?</a>
+                                <a href="forgotpassword.php">Forgot password?</a>
                             </div>
                         </div>  
                     </div>
