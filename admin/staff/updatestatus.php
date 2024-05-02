@@ -135,7 +135,7 @@ $staff_name = $staff_data['staff_name'];
                             <h2>Update Progress</h2>
                             <form action="status.php?sid=<?= $staffIC ?>&cid=<?php echo $cid; ?>" method="post" onsubmit="return confirmAndUpdate()">
                             <select name="status">
-                                <option value="">---Incomplete---</option>
+                                <option value="Incomplete">Incomplete</option>
                                 <option value="Device Receive">Device Receive</option>
                                 <option value="Repairing">Repairing</option>
                                 <option value="Complete">Complete</option>
