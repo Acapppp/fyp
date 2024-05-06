@@ -43,7 +43,7 @@
                         <a class="nav-link" href="contactus.php">Contact Us</a>
                     </li>
     
-                    <a href="../login.php" class="btn btn-primary ms-lg-3">Admin</a>
+                    <a href="../login.php" class="btn btn-primary ms-lg-3">Login</a>
     
                 </ul>
             </div>
@@ -71,7 +71,7 @@
         </div>
     </section>
 
-    <section id="services" class="py-5">
+    <section id="services" class="services">
 
         <!-- Container -->
         <div class="container">
@@ -80,7 +80,7 @@
             <div class="row align-items-center mb-3" data-aos="fade-down">
 
                 <!-- Col -->
-                <div class="col-md-8">
+                <div class="col-md-8"><br>
                     <h6>SERVICES</h6>
                     <h2>Our Services</h2>
                 </div>
@@ -92,7 +92,7 @@
 
                 <!-- Col -->
                 <div class="col-md-4" data-aos="fade-down" data-aos-delay="400">
-                    <div class="service border-custom p-4">
+                    <div class="bord">
                     <h4>INSTALLATION</h4>
                     <img src="images/adminimage.webp" alt="Installation" class="service-image small-image">
                     </div>
@@ -100,7 +100,7 @@
 
                 <!-- Col -->
                 <div class="col-md-4" data-aos="fade-down" data-aos-delay="500">
-                    <div class="service border-custom p-4">
+                    <div class="bord">
                     <h4>MAINTENANCE</h4>
                     <img src="images/image1.jpg" alt="Installation" class="service-image small-image" height="180px">
                     </div>
@@ -108,7 +108,7 @@
 
                 <!-- Col -->
                 <div class="col-md-4" data-aos="fade-down" data-aos-delay="600">
-                    <div class="service border-custom p-4">
+                    <div class="bord">
                     <h4>REPAIRING</h4>
                     <img src="images/image2.jpg" alt="Installation" class="service-image small-image">
                     </div>
