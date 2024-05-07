@@ -112,6 +112,20 @@ $staffIC = $_GET['sid'];
                 <div class="title">
                     <header>Registration Form</header>
                 </div>
+                <div class="navbar-collapse navbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="../images/user.png" class="avatar img-fluid rounded" alt="">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- <a href="#" class="dropdown-item">Profile</a>
+                                <a href="#" class="dropdown-item">Setting</a> -->
+                                <a href="../login.php" class="dropdown-item">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </nav>
             <!--Bottom Bar-->
             <main class="content px-3 py-2">

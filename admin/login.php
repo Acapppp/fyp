@@ -19,7 +19,6 @@
             <div class="container main">
                 <div class="row">
                     <div class="col-md-6 side-image"> 
-                        <!-- acap taik -->
                         <!------------- image ------------->
                         <div class="background">
                             <img src="" alt="">
@@ -48,7 +47,7 @@
                                         echo "You have entered the wrong username or password.";
                                     }
                                 ?>
-                            </div>
+                            </div><br>
                             <div class="forgot-password">
                                 <a href="./passwordreset/forgot-password.php">Forgot password?</a>
                             </div>
