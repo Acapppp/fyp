@@ -27,6 +27,11 @@
 	height: 34vh;
 }
 
+.staf{
+	width: 62vh;
+	height: 68vh;
+}
+
 .login{
 	font-family: 'Poppins', sans-serif;
 	width: 15vh;
@@ -2338,10 +2343,10 @@ ul.social-list > * {
 	padding-right: 10px;
 }
 
-ul.social-list a:hover {
+/* ul.social-list a:hover {
 	color: #1D81DE;
 	background: #FFE146;
-}
+} */
 
 .category-list > li + li {
 	margin-top: 8px;
@@ -10258,7 +10263,7 @@ html.rd-navbar-fixed-linked .page {
 
 .nav-tabs-modern .nav-link:before {
 	position: absolute;
-	content: '\ec44';
+	
 	top: 6px;
 	left: 2px;
 	font-family: 'Poppins', sans-serif; 
@@ -10275,6 +10280,7 @@ html.rd-navbar-fixed-linked .page {
 
 .nav-tabs-modern .nav-link:hover:before, .nav-tabs-modern .nav-link.active:before {
 	opacity: 1;
+	display: none;
 }
 
 @media (min-width: 992px) {
