@@ -24,9 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $staffIC = isset($_GET['sid']) ? mysqli_real_escape_string($con, $_GET['sid']) : '';
 
 // Count the number of customers
-$count_query = "SELECT COUNT(*) AS total_customers FROM custinfo";
-$count_result = $con->query($count_query);
-$total_customers = $count_result->fetch_assoc()['total_customers'];
+$count_query = "SELECT COUNT(*) AS total_assigned_customers FROM custinfo WHERE staff_ic = ?";
+$stmt_count = $con->prepare($count_query);
+$stmt_count->bind_param('s', $staffIC);
+$stmt_count->execute();
+$total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assigned_customers'];
 
 $display = "SELECT * FROM custinfo where staff_ic = '$staffIC'";
 
@@ -148,7 +150,7 @@ $staff_name = $staff_data['staff_name'];
                                             <div class="p-3 m-1">
                 
                                                 <h4>
-                                                    <?php echo $total_customers; ?> Uncomplete Task
+                                                    <?php echo $total_assigned_customers; ?> Task
                                                 </h4>
                                                 <p class="mb-0">Task Management, Baam GADGET</p>
                                             </div>

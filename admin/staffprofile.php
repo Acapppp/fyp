@@ -131,7 +131,7 @@ $row = $resultgetdata->fetch_assoc();
                                         <div class="user-avatar">
                                             <!-- <img src="./images/anya.png" alt="Maxwell Admin"> -->
                                         </div>
-                                        <h5 class="user-name" ><?php echo $row['staff_name']; ?></h5>
+                                        <h5 class="user-name" style="font-size: 1.2rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><?php echo $row['staff_name']; ?></h5>
                                         <h6 class="user-email"><?php echo $row['staff_email']; ?></h6>
                                     </div>
                                     <!-- <div class="first">

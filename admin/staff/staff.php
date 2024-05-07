@@ -3,24 +3,7 @@ include('database/connection.php');
 
 $staffIC = $_GET['sid'];
 
-//try
-// Count the number of customers
-$count_query = "SELECT COUNT(*) AS total_customers FROM custinfo";
-$count_result = $con->query($count_query);
-$total_customers = $count_result->fetch_assoc()['total_customers'];
-
-$display = "SELECT custname, custic, custphone, devicetype, brand, model, problem, payment, status 
-            FROM custinfo
-            ORDER BY custic DESC
-            LIMIT 4"; // Fetch only the latest 4 records
-
-$resultdis = $con->query($display);
-
 // Fetch staff name and image URL from the database
-// $sql = "SELECT staff_name FROM staff_info"; // Adjust the query as per your table structure
-// $stmt = $con->query($sql);
-// $staff_data = $stmt->fetch_assoc();
-
 $sql = "SELECT staff_name FROM staff_info WHERE staff_ic = ?";
 $stmt = $con->prepare($sql);
 $stmt->bind_param('s', $staffIC);
@@ -29,9 +12,23 @@ $stmt->bind_result($staff_name);
 $stmt->fetch();
 $stmt->close();
 
-// Assign fetched data to variables
-// $staff_name = $staff_data['staff_name'];
+// Fetch recent customers assigned to the logged-in staff member
+$display = "SELECT custname, custphone, payment, status 
+            FROM custinfo
+            WHERE staff_ic = ?
+            ORDER BY custic DESC
+            LIMIT 4"; // Fetch only the latest 4 records assigned to the staff member
 
+$stmt = $con->prepare($display);
+$stmt->bind_param('s', $staffIC);
+$stmt->execute();
+$resultdis = $stmt->get_result();
+
+$count_query = "SELECT COUNT(*) AS total_assigned_customers FROM custinfo WHERE staff_ic = ?";
+$stmt_count = $con->prepare($count_query);
+$stmt_count->bind_param('s', $staffIC);
+$stmt_count->execute();
+$total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assigned_customers'];
 
 ?>
 
@@ -166,7 +163,8 @@ $stmt->close();
                                     <div class="d-flex align-items-start">
                                         <div class="flex-grow-1">
                                             <h4 class="mb-2">
-                                                <?php echo $total_customers; ?> Customers <i class="fa-solid fa-circle fa-xs" style="color: #18c91b;"></i>
+                                                Total Assigned Customer : <br><br>
+                                                <?php echo $total_assigned_customers; ?> Customers <i class="fa-solid fa-circle fa-xs" style="color: #18c91b;"></i>
                                             </h4>
                                             <!-- <h4 class="mb-2">
                                                 <?php //echo $total_customers; ?> Uncomplete Task <i class="fa-solid fa-circle fa-xs" style="color: #f51414;"></i>
@@ -203,8 +201,8 @@ $stmt->close();
                                         <th scope="col">No.</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Phone Number</th>
-                                        <th scope="col">Payment</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Payment</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -218,8 +216,18 @@ $stmt->close();
                                         <td><?= $count ?>.</td>
                                         <td><?= $data['custname']; ?></td>
                                         <td><?= $data['custphone']; ?></td>
-                                        <td><button class="pay"><?= $data['payment']; ?></button></td>
-                                        <td><button class="status"><?= $data['status']; ?></button></td>
+                                        <td><?= $data['status']; ?></td>
+                                        <td>
+                                            <?php
+                                            if ($data['payment'] === 'Unpaid') {
+                                                echo '<button class="status btn-danger">' . $data['payment'] . '</button>';
+                                            } else {
+                                                echo '<button class="pay btn-success">' . $data['payment'] . '</button>';
+                                            }
+                                            ?>
+                                        </td>
+
+                                        
                                     </tr>
                                     <?php
                                     $count++; 

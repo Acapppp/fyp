@@ -167,8 +167,8 @@ if(isset($_POST['btnsearch'])){
                                         <th scope="col">IC Number</th>
                                         <th scope="col">Phone Number</th>
                                         <th scope="col">Date</th>
-                                        <th scope="col">Payment</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Payment</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -185,8 +185,17 @@ if(isset($_POST['btnsearch'])){
                                         <td><?= $data['custic']; ?></td>
                                         <td><?= $data['custphone']; ?></td>
                                         <td><?= $data['regdate']; ?></td>
-                                        <td><button class="pay"><?= $data['payment']; ?></button></td>
-                                        <td><button class="status"><?= $data['status']; ?></button></td>
+                                        <td><?= $data['status']; ?></td>
+                                        <td>
+                                            <?php
+                                            if ($data['payment'] === 'Unpaid') {
+                                                echo '<button class="status btn-danger">' . $data['payment'] . '</button>';
+                                            } else {
+                                                echo '<button class="pay btn-success">' . $data['payment'] . '</button>';
+                                            }
+                                            ?>
+                                        </td>
+                                        
                                         
                                         <td>
                                             <!-- <a href="displayonecust.php?cid=<?=$data['custic'];?>"><button class="cust">View Info</button></a> -->
