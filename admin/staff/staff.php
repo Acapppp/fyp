@@ -17,12 +17,20 @@ $display = "SELECT custname, custic, custphone, devicetype, brand, model, proble
 $resultdis = $con->query($display);
 
 // Fetch staff name and image URL from the database
-$sql = "SELECT staff_name FROM staff_info"; // Adjust the query as per your table structure
-$stmt = $con->query($sql);
-$staff_data = $stmt->fetch_assoc();
+// $sql = "SELECT staff_name FROM staff_info"; // Adjust the query as per your table structure
+// $stmt = $con->query($sql);
+// $staff_data = $stmt->fetch_assoc();
+
+$sql = "SELECT staff_name FROM staff_info WHERE staff_ic = ?";
+$stmt = $con->prepare($sql);
+$stmt->bind_param('s', $staffIC);
+$stmt->execute();
+$stmt->bind_result($staff_name);
+$stmt->fetch();
+$stmt->close();
 
 // Assign fetched data to variables
-$staff_name = $staff_data['staff_name'];
+// $staff_name = $staff_data['staff_name'];
 
 
 ?>
@@ -160,9 +168,9 @@ $staff_name = $staff_data['staff_name'];
                                             <h4 class="mb-2">
                                                 <?php echo $total_customers; ?> Customers <i class="fa-solid fa-circle fa-xs" style="color: #18c91b;"></i>
                                             </h4>
-                                            <h4 class="mb-2">
-                                                <?php echo $total_customers; ?> Uncomplete Task <i class="fa-solid fa-circle fa-xs" style="color: #f51414;"></i>
-                                            </h4>
+                                            <!-- <h4 class="mb-2">
+                                                <?php //echo $total_customers; ?> Uncomplete Task <i class="fa-solid fa-circle fa-xs" style="color: #f51414;"></i>
+                                            </h4> -->
                                             <!-- <div class="mb-0">
                                                 <span class="badge text-success me-2">
                                                     +9.0%

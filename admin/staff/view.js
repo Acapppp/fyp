@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var model = this.getAttribute('data-model');
         var problem = this.getAttribute('data-problem');
         var regdate = this.getAttribute('data-regdate');
+        var payment = this.getAttribute('data-payment');
 
         var customerDetailsHTML = `
           <p><strong>IC Number:</strong> ${custic}</p>
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <p><strong>Model:</strong> ${model}</p>
           <p><strong>Problem:</strong> ${problem}</p>
           <p><strong>Registration Date:</strong> ${regdate}</p>
+          <p><strong>Payment Status:</strong> ${payment}</p>
           
         `;
 

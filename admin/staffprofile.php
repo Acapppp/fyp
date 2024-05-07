@@ -85,25 +85,15 @@ $row = $resultgetdata->fetch_assoc();
                             <li class="sidebar-item">
                                 <a href="staffinformation.php" class="sidebar-link">Staff Information</a>
                             </li>
-                            <li class="sidebar-item">
+                            <!-- <li class="sidebar-item">
                                 <a href="assigntask.php" class="sidebar-link">Assign Task</a>
-                            </li>
+                            </li> -->
                             <!-- <li class="sidebar-item">
                                 <a href="#" class="sidebar-link">Post 3</a>
                             </li> -->
                         </ul>
                     </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-sliders pe-2"></i>
-                            Auth
-                        </a>
-                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Forgot Password</a>
-                            </li>
-                        </ul>
-                    </li>
+                    
                 </ul>
             </div>
         </aside>

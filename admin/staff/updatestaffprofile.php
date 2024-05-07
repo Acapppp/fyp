@@ -1,31 +1,59 @@
 <?php
 include('database/connection.php');
 
+// $staffIC = $_GET['sid'];
+
+// $display = "SELECT custname, custic, custphone, devicetype, brand, model, problem 
+//             FROM custinfo";
+
+// $resultdis = $con->query($display);
+
+// // Fetch data from the database
+// $sql = "SELECT staff_ic, staff_name, staff_phone, staff_gender, staff_email, staffusername, staff_pass FROM staff_info";
+// $result = mysqli_query($con, $sql);
+
+// $row = mysqli_fetch_assoc($result);
+
+// // Fetch staff name and image URL from the database
+// $sql = "SELECT staff_name FROM staff_info"; // Adjust the query as per your table structure
+// $stmt = $con->query($sql);
+// $staff_data = $stmt->fetch_assoc();
+
+// // Assign fetched data to variables
+// $staff_name = $staff_data['staff_name'];
+
+// $result = mysqli_query($con, "SELECT * FROM staff_info");
+// $row = mysqli_fetch_assoc($result);
+
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     $staff_name = $_POST['staff_name'];
+//     $staff_ic = $_POST['staff_ic'];
+//     $staff_phone = $_POST['staff_phone'];
+//     $staff_email = $_POST['staff_email'];
+//     $staff_gender = $_POST['staff_gender'];
+//     $s_username = $_POST['s_username'];
+//     $new_pass = $_POST['new_pass'];
+
+//     $sql = "UPDATE staff_info SET staff_phone='$staff_phone', staff_email='$staff_email', staff_gender='$staff_gender', staffusername='$s_username', staff_pass='$new_pass' WHERE staff_ic='$staff_ic'";
+
+//     if (mysqli_query($con, $sql)) {
+//         // Display success message using JavaScript alert
+//         echo '<script>alert("Record updated successfully");</script>';
+//     } else {
+//         echo "Error updating record: " . mysqli_error($con);
+//     }
+// }
+
+// Retrieve staff IC from the URL
 $staffIC = $_GET['sid'];
 
-$display = "SELECT custname, custic, custphone, devicetype, brand, model, problem 
-            FROM custinfo";
-
-$resultdis = $con->query($display);
-
-// Fetch data from the database
-$sql = "SELECT staff_ic, staff_name, staff_phone, staff_gender, staff_email, staffusername, staff_pass FROM staff_info";
+// Fetch staff details from the database based on staff IC
+$sql = "SELECT * FROM staff_info WHERE staff_ic = '$staffIC'";
 $result = mysqli_query($con, $sql);
-
-$row = mysqli_fetch_assoc($result);
-
-// Fetch staff name and image URL from the database
-$sql = "SELECT staff_name FROM staff_info"; // Adjust the query as per your table structure
-$stmt = $con->query($sql);
-$staff_data = $stmt->fetch_assoc();
-
-// Assign fetched data to variables
-$staff_name = $staff_data['staff_name'];
-
-$result = mysqli_query($con, "SELECT * FROM staff_info");
 $row = mysqli_fetch_assoc($result);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
     $staff_name = $_POST['staff_name'];
     $staff_ic = $_POST['staff_ic'];
     $staff_phone = $_POST['staff_phone'];
@@ -34,7 +62,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $s_username = $_POST['s_username'];
     $new_pass = $_POST['new_pass'];
 
-    $sql = "UPDATE staff_info SET staff_phone='$staff_phone', staff_email='$staff_email', staff_gender='$staff_gender', staffusername='$s_username', staff_pass='$new_pass' WHERE staff_ic='$staff_ic'";
+    // Update staff info in the database
+    $sql = "UPDATE staff_info SET 
+                staff_phone='$staff_phone', 
+                staff_email='$staff_email', 
+                staff_gender='$staff_gender', 
+                staffusername='$s_username', 
+                staff_pass='$new_pass' 
+            WHERE staff_ic='$staff_ic'";
 
     if (mysqli_query($con, $sql)) {
         // Display success message using JavaScript alert

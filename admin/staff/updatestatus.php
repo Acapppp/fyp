@@ -143,7 +143,8 @@ $staff_name = $staff_data['staff_name'];
                             </select>
                                 <br><br>
                                 <button type="submit">Update</button>
-                            </form>
+                            </form> 
+
                         </div>
                     </div>
                 </div>

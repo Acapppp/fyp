@@ -1,6 +1,26 @@
 <?php
 include('database/connection.php');
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $customerId = $_POST['customerId'];
+    $staffId = $_POST['staffId'];
+
+    // Update payment status in the database
+    $update_query = "UPDATE custinfo SET payment = 'paid' WHERE custic = '$customerId' AND staff_ic = '$staffId'";
+    $result = $con->query($update_query);
+
+    if ($result) {
+        // Payment updated successfully
+        // Redirect or display a success message
+        header("Location: updaterepairprogress.php?sid=$staffId");
+        exit();
+    } else {
+        // Error occurred while updating payment
+        // Handle the error appropriately
+        echo "Error updating payment status: " . $con->error;
+    }
+}
+
 $staffIC = isset($_GET['sid']) ? mysqli_real_escape_string($con, $_GET['sid']) : '';
 
 // Count the number of customers
@@ -193,9 +213,11 @@ $staff_name = $staff_data['staff_name'];
                                             data-model="<?= $data['model']; ?>"
                                             data-problem="<?= $data['problem']; ?>"
                                             data-regdate="<?= $data['regdate']; ?>"
+                                            data-payment="<?= $data['payment']; ?>"
                                             >View Info</button><br>
-                                            <a href="updatestatus.php?sid=<?= $staffIC ?>&cid=<?=$data['custic'];?>"><button class="cust">Update</button></a>
+                                            <a href="updatestatus.php?sid=<?= $staffIC ?>&cid=<?=$data['custic'];?>"><button class="cust">Update</button></a><br>
                                             <!-- <button class="cust" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button> -->
+                                            <button class="cust" onclick="openPaymentModal('<?= $data['custic']; ?>')">Payment</button>
                                         </td>
                                     </tr>
                                     <?php
@@ -225,31 +247,72 @@ $staff_name = $staff_data['staff_name'];
             </div>
         </div>
     </div>
-      <!-- Modal for Update Form -->
-      <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+
+    <!-- Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="updateModalLabel">Update Task</h5>
+                    <h5 class="modal-title" id="paymentModalLabel">Payment Status Confirmation</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="updateForm">
-                        <!-- Add your form elements here -->
-                        <!-- <button type="button" class="btn btn-primary" data-step="1">Receive</button>
-                        <button type="button" class="btn btn-primary" data-step="2">In Progress</button>
-                        <button type="button" class="btn btn-primary" data-step="3">Finish</button>
-                        <button type="button" class="btn btn-primary" data-step="4">Take Away</button> -->
-                        
-                        <button type="button" class="btn btn-primary">Update Progress 1</button>
-                        <button type="button" id="updateProgressButton" class="btn btn-primary">Update Progress</button>
+                    <form id="paymentForm" method="POST" action="updaterepairprogress.php">
+                        <input type="hidden" id="customerId" name="customerId">
+                        <input type="hidden" id="staffId" name="staffId" value="<?= $staffIC ?>">
+                        <p>Are you sure you want to confirm the payment status from unpaid to paid?</p>
+                        <button type="button" class="btn btn-primary" onclick="confirmPayment()">Confirm Paid Payment</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    
+    <!-- Receipt Modal -->
+    <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="receiptModalLabel">Print Receipt</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Content for printing the receipt -->
+                    <p>This is the receipt content.</p>
+                    <button class="btn btn-primary" onclick="printReceipt()">Print Receipt</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmPayment() {
+            // Show alert dialog
+            alert('Payment status successfully changed.');
+            // Hide payment modal and show receipt modal
+            $('#paymentModal').modal('hide');
+            $('#receiptModal').modal('show');
+            document.getElementById("paymentForm").submit();
+        }
+
+        function printReceipt() {
+            // Implement print functionality here
+            window.print();
+        }
+    </script>
+
+
+    <script>
+    function openPaymentModal(customerId) {
+            $('#customerId').val(customerId);
+            $('#paymentModal').modal('show');
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script1.js"></script>
     <script src="task.js"></script>

@@ -201,6 +201,7 @@ if(isset($_POST['btnsearch'])){
                                             data-model="<?= $data['model']; ?>"
                                             data-problem="<?= $data['problem']; ?>"
                                             data-regdate="<?= $data['regdate']; ?>"
+                                            data-payment="<?= $data['payment']; ?>"
                                             >View Info</button><br>
                                         </td>
                                     </tr>
