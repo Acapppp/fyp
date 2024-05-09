@@ -39,25 +39,6 @@ $display = "SELECT * FROM custinfo";
         </div>
     </div>
 </div>
-    <!-- Modal -->
-    <!-- <div class="modal fade" id="confirmAssignModal" tabindex="-1" aria-labelledby="confirmAssignModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmAssignModalLabel">Confirm Assignment</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to assign this task?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <a id="assignButton" href="price.php" class="btn btn-primary">Submit</a>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <div class="wrapper">
         <aside id="sidebar" class="js-sidebar">
@@ -84,6 +65,12 @@ $display = "SELECT * FROM custinfo";
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
                                 <a href="customerinformation.php" class="sidebar-link">Customer Information</a>
+                            </li>
+                        </ul>
+
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="userfeedback.php" class="sidebar-link">User Feedback</a>
                             </li>
                         </ul>
                     </li>
@@ -120,12 +107,12 @@ $display = "SELECT * FROM custinfo";
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="image/profile.jpg" class="avatar img-fluid rounded" alt="">
+                                <img src="images/user.png" class="avatar img-fluid rounded" alt="">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Setting</a>
-                                <a href="#" class="dropdown-item">Logout</a>
+                                <!-- <a href="#" class="dropdown-item">Profile</a>
+                                <a href="#" class="dropdown-item">Setting</a> -->
+                                <a href="login.php" class="dropdown-item">Logout</a>
                             </div>
                         </li>
                     </ul>

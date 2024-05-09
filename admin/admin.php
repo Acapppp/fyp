@@ -54,6 +54,12 @@ if(isset ($_POST['btnsearch'])){
                                 <a href="customerinformation.php" class="sidebar-link">Customer Information</a>
                             </li>
                         </ul>
+
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="userfeedback.php" class="sidebar-link">User Feedback</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"

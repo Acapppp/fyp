@@ -1,3 +1,9 @@
+<?php
+include('../database/connection.php');
+
+// $staffIC = $_GET['sid'];
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../login.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Login | Baam Gadget</title>
+    <title>Forgot Password | Baam Gadget</title>
     <style>
         .error-message {
             color: red;
@@ -13,7 +19,7 @@
     </style>
 </head>
 <body>
-    <form action="loginprocess.php" method="POST">
+    <form action="resetpasswordprocess.php" method="POST">
         <div class="wrapper">
             <div class="background"></div>
             <div class="container main">
@@ -31,7 +37,7 @@
                         <div class="input-box">
                             <header>Reset Password</header>
                             <div class="input-field">
-                                <input type="text" class="input" id="name" name="name" required="" autocomplete="off">
+                                <input type="text" class="input" id="ic" name="ic" required="" autocomplete="off">
                                 <label for="IC Number">IC Number</label> 
                             </div> 
                             <!-- <div class="input-field">
@@ -41,13 +47,13 @@
                             <div class="input-field">
                                 <input type="submit" class="submit" name="submit" value="Reset">
                             </div> 
-                            <div class="error-message">
+                            <!-- <div class="error-message">
                                 <?php
-                                    if(isset($_GET['error'])) {
-                                        echo "You have entered the wrong username or password.";
-                                    }
+                                    // if(isset($_GET['error'])) {
+                                    //     echo "You have entered the wrong username or password.";
+                                    // }
                                 ?>
-                            </div><br>
+                            </div><br> -->
                             <!-- <div class="forgot-password">
                                 <a href="./passwordreset/forgot-password.php">Forgot password?</a>
                             </div> -->
