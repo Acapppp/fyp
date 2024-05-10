@@ -89,6 +89,12 @@ if(isset ($_POST['btnsearch'])){
                                 <a href="customerinformation.php" class="sidebar-link">Customer Information</a>
                             </li>
                         </ul>
+
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="userfeedback.php" class="sidebar-link">User Feedback</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
@@ -123,12 +129,12 @@ if(isset ($_POST['btnsearch'])){
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="image/profile.jpg" class="avatar img-fluid rounded" alt="">
+                                <img src="images/user.png" class="avatar img-fluid rounded" alt="">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Setting</a>
-                                <a href="#" class="dropdown-item">Logout</a>
+                                <!-- <a href="#" class="dropdown-item">Profile</a>
+                                <a href="#" class="dropdown-item">Setting</a> -->
+                                <a href="login.php" class="dropdown-item">Logout</a>
                             </div>
                         </li>
                     </ul>

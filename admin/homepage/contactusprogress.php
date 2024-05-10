@@ -17,7 +17,7 @@ if(isset($_POST['add'])){
         }
 
         // Insert data into the database
-        $sqlinsert = "INSERT INTO contactinfo (custname, custemail, custmessage) VALUES ('$name', '$email', '$message')";
+        $sqlinsert = "INSERT INTO feedback (custname, custemail, custmessage) VALUES ('$name', '$email', '$message')";
 
         if ($con->query($sqlinsert) === TRUE) {
             echo "<script>alert('Successfully added')</script>";
