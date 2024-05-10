@@ -159,7 +159,7 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
                                             <div class="p-3 m-1">
                                                 <!--Part 1-->
                                                 <h4>Welcome Back, <?php echo $staff_name; ?></h4>
-                                                <p class="mb-0">Staff Dashboard, Baam GADGET</p>
+                                                <p class="mb-0">Technician</p>
                                             </div>
                                         </div>
                                         <div class="col-6 align-self-end text-end">
@@ -177,8 +177,8 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
                                     <div class="d-flex align-items-start">
                                         <div class="flex-grow-1">
                                             <h4 class="mb-2">
-                                                Total Assigned Customer : <br><br>
-                                                <?php echo $total_assigned_customers; ?> Customers <i class="fa-solid fa-circle fa-xs" style="color: #18c91b;"></i>
+                                                Task to do : <br><br>
+                                                <?php echo $total_assigned_customers; ?> Task <i class="fa-solid fa-circle fa-xs" style="color: red;"></i>
                                             </h4>
                                             <!-- <h4 class="mb-2">
                                                 <?php //echo $total_customers; ?> Uncomplete Task <i class="fa-solid fa-circle fa-xs" style="color: #f51414;"></i>
