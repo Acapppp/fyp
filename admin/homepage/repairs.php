@@ -141,7 +141,7 @@ if (isset($_POST['submit']) && !empty($_POST['trackingid'])) {
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-3" data-toggle="tab">ipad pro</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-4" data-toggle="tab">macbook</a></li>
                   </ul> -->
-                  <a class="button button-lg button-primary button-tabs-modern" href="#footer">Get Notify</a>
+                  <!-- <a class="button button-lg button-primary button-tabs-modern" href="#footer">Get Notify</a> -->
                 </div>
               </div>
               <div class="col-12">
@@ -201,7 +201,7 @@ if (isset($_POST['submit']) && !empty($_POST['trackingid'])) {
             <div class="col-lg-8 order-lg-2 wow-outer pl-xl-82">
               <div class="wow slideInRight">
                 <div class="row row-35 justify-content-between">
-                  <div class="col-12">
+                  <!-- <div class="col-12">
                     <p class="sub-title-2 footer-title">Notify & Stay Updated</p>
                     
                     <form class="rd-mailform text-left rd-form-inline" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
@@ -213,7 +213,7 @@ if (isset($_POST['submit']) && !empty($_POST['trackingid'])) {
                         <button class="button button-md button-primary" type="submit">notify me</button>
                       </div>
                     </form>
-                  </div>
+                  </div> -->
                   <div class="col-md-6">
                     <p class="sub-title-2 footer-title">Phone and address</p>
                     <ul class="list-contact-info">
