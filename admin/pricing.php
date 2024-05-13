@@ -158,9 +158,37 @@ $display = "SELECT * FROM custinfo";
                         <div class="container">
                             <h2>Enter Price</h2>
                             <form action="price.php?cid=<?php echo $cid; ?>" method="post" onsubmit="return confirmAndUpdate()">
-                                <label for="price">Price (RM):</label>
-                                <input type="number" id="price" name="price" required><br>
-                                <button type="submit">Update Price</button>
+                                <label >Type : </label>
+                                <select name="type" id="type">
+                                    <option value="">-- Choose --</option>
+                                    <option value="IPHONE">IPHONE</option>
+                                    <option value="ANDROID">ANDROID</option>
+                                    <option value="TABLET">TABLET</option>
+                                </select>
+
+                                <br><br>
+
+                                <label >Problem : </label>
+                                <select name="problem" id="problem">
+                                    <option value=""> -- Choose -- </option>
+                                    <option value="Screen">Screen Repair</option>
+                                    <option value="Battery">Battery Replacement</option>
+                                    <option value="Speaker">Speaker Repair</option>
+                                    <option value="Motherboard">Motherboard</option>
+                                    <option value="Wi-Fi">Wi-Fi Module</option>
+                                </select>
+
+                                <br><br>
+
+                                <label >Technician Fees (RM): </label>
+                                <input type="number" name="technician" required><br><br>
+
+                                <label >Price (RM):</label>
+                                <input type="number" name="price" required>
+
+                                <br><br>
+                            
+                                <button type="submit">Save Price</button>
                             </form>
                         </div>
                     </div>

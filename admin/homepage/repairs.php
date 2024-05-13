@@ -8,7 +8,9 @@ if ($con->connect_error) {
 
 // Define default progress
 $status = '';
+$technician = '';
 $price = '';
+$totalPrice = '';
 
 // Check if form is submitted and tracking ID is provided
 if (isset($_POST['submit']) && !empty($_POST['trackingid'])) {
@@ -16,7 +18,7 @@ if (isset($_POST['submit']) && !empty($_POST['trackingid'])) {
     $trackingid = $con->real_escape_string($_POST['trackingid']);
 
     // Retrieve progress for the given tracking ID
-    $display = "SELECT status, price FROM custinfo WHERE custic = '$trackingid'";
+    $display = "SELECT status, price, technician FROM custinfo WHERE custic = '$trackingid'";
     $resultdis = $con->query($display);
 
     if ($resultdis) {
@@ -26,6 +28,9 @@ if (isset($_POST['submit']) && !empty($_POST['trackingid'])) {
             $row = $resultdis->fetch_assoc(); // Fetch once
             $status = $row['status'];
             $price = $row['price'];
+            $technician = $row['technician'];
+
+            $totalPrice = $price + $technician;
         } else {
             // No progress found for the provided tracking ID
             $status = "No repair status found for the provided tracking ID.";
@@ -172,8 +177,10 @@ if (isset($_POST['submit']) && !empty($_POST['trackingid'])) {
                       <div class="event-item-classic">
                         <div class="event-item-classic-caption">
                           <!-- <p class="events-time">5-8 work days</p> -->
-                          <h4>Price(RM)</h4>
-                          <h5>RM<?= $price ?></h5>
+                          <h4>Price (RM) : </h4>
+                          <h5>Technician Fees : <?= $technician ?></h5><br>
+                          <h5>Repair Price : <?= $price ?></h5><br>
+                          <h5>Total Price : <?= $totalPrice ?></h5>
                         </div>
                       </div>
                     </div>

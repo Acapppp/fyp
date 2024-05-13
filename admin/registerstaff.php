@@ -106,16 +106,49 @@
                         <form action="regstaffprocess.php" class="form" method="post">
                           <div class="input-box">
                             <label>Name : </label>
-                            <input type="text" name="staff_name" placeholder="Enter Full Name"/>
+                            <input type="text" name="staff_name" placeholder="Enter Full Name" required/>
                           </div>
                           <div class="column">
                             <div class="input-box">
-                              <label>IC Number : </label>
-                              <input type="text" name="staff_ic" placeholder="Enter ic number"  />
+                              <label>IC Number ( not include "-" ) : </label>
+                              <input type="text" name="staff_ic" id="ic-number" placeholder="xxxxxx - xx - xxxx" onblur="icNumberFormat()" minlength="12" maxlength="12"  required/>
+                              <script>
+                                    function formatIcNumber(value){
+                                        if(!value) return value;
+                                        const icNumber = value.replace(/[^\d]/g, '');
+                                        const icNumberLength = icNumber.length;
+                                        if (icNumberLength < 7) return icNumber; // If the length is less than 7, return the IC number as is
+                                        return `${icNumber.slice(0, 6)}-${icNumber.slice(6, 8)}-${icNumber.slice(8)}`;
+                                    }
+
+                                    function icNumberFormat(){
+                                        const inputField = document.getElementById('ic-number');
+                                        const formattedInputValue = formatIcNumber(inputField.value);
+                                        inputField.value = formattedInputValue;
+                                    }
+                                </script>
                             </div>
                             <div class="input-box">
                               <label>Phone Number : </label>
-                              <input type="tel" name="staff_phone" placeholder="Enter phone number"  />
+                              <input type="tel" name="staff_phone" placeholder="(010)-000-0000" id="phone-number" onkeydown="phoneNumberFormat()" maxlength="22" required/>
+                              <script>
+                                    function formatPhoneNumber(value){
+                                        if(!value) return value;
+                                        const phoneNumber = value.replace(/[^\d]/g, '');
+                                        const phoneNumberLength = phoneNumber.length;
+                                        if(phoneNumberLength < 4) return phoneNumber;
+                                        if(phoneNumberLength < 7){
+                                            return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+                                        }
+                                        return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+                                    }
+
+                                    function phoneNumberFormat(){
+                                        const inputField = document.getElementById('phone-number');
+                                        const formattedInputValue = formatPhoneNumber(inputField.value);
+                                        inputField.value = formattedInputValue;
+                                    }
+                                </script>
                             </div>
                           </div> <br>
 
@@ -134,22 +167,22 @@
                           <div class="column">
                           <div class="input-box">
                               <label>Age : </label>
-                              <input type="number" name="staff_age" placeholder="Enter age"  min="0"/>
+                              <input type="number" name="staff_age" placeholder="Enter age"  min="0" required/>
                             </div>
                             <div class="input-box">
                               <label>Email : </label>
-                              <input type="email" name="staff_email" placeholder="Enter email"  />
+                              <input type="email" name="staff_email" placeholder="Enter email"  required/>
                             </div>
                           </div>
 
                           <div class="column">
                           <div class="input-box">
                               <label>Username : </label>
-                              <input type="text" name="staffusername" placeholder="Enter username" />
+                              <input type="text" name="staffusername" placeholder="Enter username" required/>
                             </div>
                             <div class="input-box">
                               <label>Password : </label>
-                              <input type="password" name="staff_pass" placeholder="Enter password"  />
+                              <input type="password" name="staff_pass" placeholder="Enter password"  required/>
                             </div>
                           </div>
                           <div class="column">
