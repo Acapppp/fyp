@@ -194,21 +194,11 @@ $staffIC = $_GET['sid'];
                                         }
                                     </script>
                                 </div>
+
                                 <div class="input-box">
                                     <label class="lab">Date</label>
-                                    <input type="date" placeholder="DD.MM.YYYY" name="regdate" id="date-input"
-                                        readonly />
-                                    <script>
-                                        var today = new Date();
-                                        var dd = String(today.getDate()).padStart(2, '0');
-                                        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-                                        var yyyy = today.getFullYear();
-
-                                        today = dd + '/' + mm + '/' + yyyy;
-                                        document.getElementById("date-input").setAttribute("value", today);
-                                    </script>
+                                    <input type="date"  name="regdate" id="date-input"/>
                                 </div>
-
 
 
                             </div>
@@ -285,11 +275,28 @@ $staffIC = $_GET['sid'];
                                     nameInput.value = nameInput.value.toUpperCase();
                                 }
 
-                                // Function to ensure only future dates are selectable
-                                function restrictPastDates() {
-                                    const today = new Date().toISOString().split('T')[0];
-                                    document.getElementById("date-input").setAttribute("min", today);
-                                }
+                                 // Function to set the minimum selectable date to today and maximum to today
+    function setMinMaxDate() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById("date-input").setAttribute("min", today);
+        document.getElementById("date-input").setAttribute("max", today);
+    }
+
+    // Function to set the initial value of the input field to today's date
+    function setInitialDate() {
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        document.getElementById("date-input").value = `${year}-${month}-${day}`;
+    }
+
+    // Attach event listener to set the minimum and maximum date attributes
+    document.getElementById("date-input").addEventListener("input", setMinMaxDate);
+
+    // Set the initial value of the input field and restrict selectable dates
+    setInitialDate();
+    setMinMaxDate();
 
                                 // Function to format phone model
                                 // Function to format phone model
@@ -311,7 +318,7 @@ $staffIC = $_GET['sid'];
 
                                 // Attach event listeners to relevant inputs
                                 document.querySelector('input[name="custname"]').addEventListener('input', formatName);
-                                document.getElementById("date-input").addEventListener("change", restrictPastDates);
+                                
                                 document.querySelector('input[name="model"]').addEventListener('input', formatPhoneModel);
                             </script>
 
