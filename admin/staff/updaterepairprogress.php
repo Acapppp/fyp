@@ -1,5 +1,5 @@
 <?php
-include('database/connection.php');
+include ('database/connection.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $customerId = $_POST['customerId'];
@@ -45,6 +45,7 @@ $staff_name = $staff_data['staff_name'];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,6 +55,7 @@ $staff_name = $staff_data['staff_name'];
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="staff.css">
 </head>
+
 <body>
     <div class="wrapper">
         <aside id="sidebar" class="js-sidebar">
@@ -83,9 +85,10 @@ $staff_name = $staff_data['staff_name'];
                         </a>
                         <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="updatestaffprofile.php?sid=<?= $staffIC; ?>" class="sidebar-link">Update Info</a>
+                                <a href="updatestaffprofile.php?sid=<?= $staffIC; ?>" class="sidebar-link">Update
+                                    Info</a>
                             </li>
-                            
+
                         </ul>
                     </li>
                     <!--Customer-->
@@ -96,10 +99,12 @@ $staff_name = $staff_data['staff_name'];
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="registercustomer.php?sid=<?= $staffIC; ?>" class="sidebar-link">Register Customer</a>
+                                <a href="registercustomer.php?sid=<?= $staffIC; ?>" class="sidebar-link">Register
+                                    Customer</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="s_customerinfo.php?sid=<?= $staffIC; ?>" class="sidebar-link">Customer Information</a>
+                                <a href="s_customerinfo.php?sid=<?= $staffIC; ?>" class="sidebar-link">Customer
+                                    Information</a>
                             </li>
                         </ul>
                     </li>
@@ -115,18 +120,14 @@ $staff_name = $staff_data['staff_name'];
                         </a>
                         <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="updaterepairprogress.php?sid=<?= $staffIC; ?>" class="sidebar-link">Task Management</a>
+                                <a href="updaterepairprogress.php?sid=<?= $staffIC; ?>" class="sidebar-link">Task
+                                    Management</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-    <!-- <div class="btnl">
-        <button class="logout">
-            <img width="32" height="32" src="https://img.icons8.com/glyph-neue/32/power-off-button.png" alt="power-off-button"/>
-            <a href="/admin/login.php">Logout</a>
-        </button>
-    </div> -->
-</li>
+
+                    </li>
                 </ul>
             </div>
         </aside>
@@ -144,8 +145,7 @@ $staff_name = $staff_data['staff_name'];
                                 <img src="../images/user.png" class="avatar img-fluid rounded" alt="">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <!-- <a href="#" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Setting</a> -->
+
                                 <a href="../login.php" class="dropdown-item">Logout</a>
                             </div>
                         </li>
@@ -162,16 +162,17 @@ $staff_name = $staff_data['staff_name'];
                                     <div class="row g-0 w-100">
                                         <div class="col-6">
                                             <div class="p-3 m-1">
-                
+
                                                 <h4>
                                                     <?php echo $total_assigned_customers; ?> Task
                                                 </h4>
-                                                <p class="mb-0">Task Management, Baam GADGET</p>
+                                                <p class="mb-0">
+                                                    You have <?php echo $total_assigned_customers; ?> Incomplete Task
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="col-6 align-self-end text-end">
-                                            <img src="" class="img-fluid illustration-img"
-                                                alt="">
+                                            <img src="" class="img-fluid illustration-img" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +182,7 @@ $staff_name = $staff_data['staff_name'];
                     <div class="mb-3">
                         <h4>Repairing & Task Progress</h4>
                     </div>
-                   
+
                     <!-- Table Element -->
                     <div class="card border-0">
                         <div class="card-header">
@@ -196,48 +197,48 @@ $staff_name = $staff_data['staff_name'];
                                         <th scope="col">No</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">IC Number</th>
-                                        <th scope="col">Phone Number</th>
-                                        <th scope="col">Date</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Payment</th>
                                         <th scope="col">Price(RM)</th>
-                                        <th scope="col" >Progress</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Progress</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $count = 1;
 
-                                    while($data = $resultdis->fetch_assoc()) {
-                                    ?>
-                                    <tr class="tr">
-                                        <td><?= $count ?>.</td>
-                                        <td><?= $data['custname']; ?></td>
-                                        <td><?= $data['custic']; ?></td>
-                                        <td><?= $data['custphone']; ?></td>
-                                        <td><?= $data['regdate']; ?></td>
-                                        <td><?= $data['price']; ?></td>
-                                        
-                                        <td>
-                                            <!-- <a href="displayonerecord.php?cid=<?=$data['custic'];?>"><button class="cust">View</button></a> -->
-                                            <button class="cust view-customer" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#customerModal" 
-                                            data-custic="<?= $data['custic']; ?>" 
-                                            data-custname="<?= $data['custname']; ?>"
-                                            data-custphone="<?= $data['custphone']; ?>"
-                                            data-devicetype="<?= $data['devicetype']; ?>"
-                                            data-brand="<?= $data['brand']; ?>"
-                                            data-model="<?= $data['model']; ?>"
-                                            data-problem="<?= $data['problem']; ?>"
-                                            data-regdate="<?= $data['regdate']; ?>"
-                                            data-payment="<?= $data['payment']; ?>"
-                                            >View Info</button><br>
-                                            <a href="updatestatus.php?sid=<?= $staffIC ?>&cid=<?=$data['custic'];?>"><button class="cust">Update</button></a><br>
-                                            <!-- <button class="cust" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button> -->
-                                            <button class="cust" onclick="openPaymentModal('<?= $data['custic']; ?>')">Payment</button>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                    $count++;
+                                    while ($data = $resultdis->fetch_assoc()) {
+                                        ?>
+                                        <tr class="tr">
+                                            <td><?= $count ?>.</td>
+                                            <td><?= $data['custname']; ?></td>
+                                            <td><?= $data['custic']; ?></td>
+                                            <td><?= $data['custemail']; ?></td>
+                                            <td><?= $data['payment']; ?></td>
+                                            <td><?= $data['price']; ?></td>
+                                            <td><?= $data['status']; ?></td>
+
+                                            <td>
+                                                <!-- <a href="displayonerecord.php?cid=<?= $data['custic']; ?>"><button class="cust">View</button></a> -->
+                                                <button class="cust view-customer" data-bs-toggle="modal"
+                                                    data-bs-target="#customerModal" data-custic="<?= $data['custic']; ?>"
+                                                    data-custname="<?= $data['custname']; ?>"
+                                                    data-custphone="<?= $data['custphone']; ?>"
+                                                    data-devicetype="<?= $data['devicetype']; ?>"
+                                                    data-brand="<?= $data['brand']; ?>" data-model="<?= $data['model']; ?>"
+                                                    data-problem="<?= $data['problem']; ?>"
+                                                    data-regdate="<?= $data['regdate']; ?>"
+                                                    data-payment="<?= $data['payment']; ?>">View Info</button><br>
+                                                <a href="updatestatus.php?sid=<?= $staffIC ?>&cid=<?= $data['custic']; ?>"><button
+                                                        class="cust">Update</button></a><br>
+                                                <!-- <button class="cust" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button> -->
+                                                <button class="cust" id="paymentButton_<?= $data['custic']; ?>" onclick="openPaymentModal('<?= $data['custic']; ?>')">Payment</button>
+
+                                            </td>
+                                        </tr>
+                                        <?php
+                                        $count++;
                                     }
                                     ?>
                                 </tbody>
@@ -246,20 +247,21 @@ $staff_name = $staff_data['staff_name'];
                     </div>
                 </div>
             </main>
-            <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="customerModalLabel">Task Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="customerDetails">
-                    <!-- Customer details will be displayed here -->
+            <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="customerModalLabel">Task Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="customerDetails">
+                                <!-- Customer details will be displayed here -->
+                            </div>
+                        </div>
                     </div>
                 </div>
-                </div>
-            </div>
             </div>
         </div>
     </div>
@@ -276,8 +278,9 @@ $staff_name = $staff_data['staff_name'];
                     <form id="paymentForm" method="POST" action="updaterepairprogress.php">
                         <input type="hidden" id="customerId" name="customerId">
                         <input type="hidden" id="staffId" name="staffId" value="<?= $staffIC ?>">
-                        <p>Are you sure you want to confirm the payment status from unpaid to paid?</p>
-                        <button type="button" class="btn btn-primary" onclick="confirmPayment()">Confirm Paid Payment</button>
+                        <p>Are you sure you want to confirm the payment status?</p>
+                        <button type="button" id="confirmButton" class="btn btn-primary"
+                            onclick="confirmPayment()">Confirm</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </form>
                 </div>
@@ -285,22 +288,13 @@ $staff_name = $staff_data['staff_name'];
         </div>
     </div>
 
-    <!-- Receipt Modal -->
-    <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="receiptModalLabel">Print Receipt</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Content for printing the receipt -->
-                    <p>This is the receipt content.</p>
-                    <button class="btn btn-primary" onclick="printReceipt()">Print Receipt</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script>
+        function confirmPayment() {
+            // Perform your payment status update here
+            // Assuming the payment status is successfully updated, disable the button
+            document.getElementById("confirmButton").disabled = true;
+        }
+    </script>
 
     <script>
         function confirmPayment() {
@@ -320,14 +314,14 @@ $staff_name = $staff_data['staff_name'];
 
 
     <script>
-    function openPaymentModal(customerId) {
+        function openPaymentModal(customerId) {
             $('#customerId').val(customerId);
             $('#paymentModal').modal('show');
         }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script1.js"></script>

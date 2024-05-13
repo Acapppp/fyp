@@ -1,28 +1,23 @@
 <?php
-include('database/connection.php');
+include ('database/connection.php');
 
 $staffIC = $_GET['sid'];
 $cid = $_GET['cid'];
-// Count the number of customers
-$count_query = "SELECT COUNT(*) AS total_customers FROM custinfo";
-$count_result = $con->query($count_query);
-$total_customers = $count_result->fetch_assoc()['total_customers'];
 
-// $display = "SELECT * FROM custinfo where staff_ic = '$staffIC'";
-
-// $resultdis = $con->query($display);
-
-// Fetch staff name and image URL from the database
-$sql = "SELECT staff_name FROM staff_info"; // Adjust the query as per your table structure
-$stmt = $con->query($sql);
-$staff_data = $stmt->fetch_assoc();
+// Fetch staff name and email from the database
+$staff_query = "SELECT custname, custemail, status FROM custinfo WHERE custic = '$cid'";
+$staff_result = $con->query($staff_query);
+$staff_data = $staff_result->fetch_assoc();
 
 // Assign fetched data to variables
-$staff_name = $staff_data['staff_name'];
+$staff_name = $staff_data['custname'];
+$staff_email = $staff_data['custemail'];
+$status = $staff_data['status'];
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,6 +27,7 @@ $staff_name = $staff_data['staff_name'];
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="staff.css">
 </head>
+
 <body>
     <div class="wrapper">
         <aside id="sidebar" class="js-sidebar">
@@ -61,9 +57,10 @@ $staff_name = $staff_data['staff_name'];
                         </a>
                         <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="updatestaffprofile.php?sid=<?= $staffIC; ?>" class="sidebar-link">Update Info</a>
+                                <a href="updatestaffprofile.php?sid=<?= $staffIC; ?>" class="sidebar-link">Update
+                                    Info</a>
                             </li>
-                            
+
                         </ul>
                     </li>
                     <!--Customer-->
@@ -74,10 +71,12 @@ $staff_name = $staff_data['staff_name'];
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="registercustomer.php?sid=<?= $staffIC; ?>" class="sidebar-link">Register Customer</a>
+                                <a href="registercustomer.php?sid=<?= $staffIC; ?>" class="sidebar-link">Register
+                                    Customer</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="s_customerinfo.php?sid=<?= $staffIC; ?>" class="sidebar-link">Customer Information</a>
+                                <a href="s_customerinfo.php?sid=<?= $staffIC; ?>" class="sidebar-link">Customer
+                                    Information</a>
                             </li>
                         </ul>
                     </li>
@@ -93,13 +92,14 @@ $staff_name = $staff_data['staff_name'];
                         </a>
                         <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="updaterepairprogress.php?sid=<?= $staffIC; ?>" class="sidebar-link">Task Management</a>
+                                <a href="updaterepairprogress.php?sid=<?= $staffIC; ?>" class="sidebar-link">Task
+                                    Management</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-    
-</li>
+
+                    </li>
                 </ul>
             </div>
         </aside>
@@ -119,50 +119,58 @@ $staff_name = $staff_data['staff_name'];
                     <div class="card border-0">
                         <div class="card-header">
                             <h5 class="card-title">
-                                Repair Progress 
+                                Repair Progress
                             </h5><br>
                             <h6 class="card-subtitle text-muted">
-                               
+
                             </h6>
                         </div>
                         <div class="card-body">
-                        <div class="container">
-                            <h2>Update Progress</h2>
-                            <form action="status.php?sid=<?= $staffIC ?>&cid=<?php echo $cid; ?>" method="post" onsubmit="return confirmAndUpdate()">
-                            <select name="status">
-                                <option value="Incomplete">Incomplete</option>
-                                <option value="Device Receive">Device Receive</option>
-                                <option value="Repairing">Repairing</option>
-                                <option value="Complete">Complete</option>
-                                <option value="Pickup">Pickup</option>
-                            </select>
-                                <br><br>
-                                <button type="submit">Update</button>
-                            </form> 
+                            <div class="container">
+                                <!-- <h2>Update Progress</h2> -->
+                                <form action="status.php?sid=<?= $staffIC ?>&cid=<?php echo $cid; ?>" method="post"
+                                    onsubmit="return confirmAndUpdate()">
+                                    <label for="">Status :</label>
+                                    <select name="status" required>
+                                        <option value="<?= $status ?>"><?= $status ?></option>
+                                        <option value="Repairing">Repairing</option>
+                                        <option value="Complete">Complete</option>
+                                        <option value="Pickup">Pickup</option>
+                                    </select><br><br>
 
+                                    <!-- Display staff name and email -->
+                                    Name : <input type="text" name="name" value="<?= $staff_name ?>" readonly><br><br>
+                                    Email : <input type="email" name="email" value="<?= $staff_email ?>" readonly><br><br>  
+
+                                    <!-- Single button for both updating status and sending email -->
+                                    <button type="submit" name="updateStatusAndEmail">Update and Send Email</button>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+            </main>
+            <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="customerModalLabel">Task Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="customerDetails">
+                                <!-- Customer details will be displayed here -->
+                            </div>
                         </div>
                     </div>
                 </div>
-            </main>
-            <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="customerModalLabel">Task Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="customerDetails">
-                    <!-- Customer details will be displayed here -->
-                    </div>
-                </div>
-                </div>
-            </div>
             </div>
         </div>
     </div>
-      <!-- Modal for Update Form -->
-      <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <!-- Modal for Update Form -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -173,10 +181,10 @@ $staff_name = $staff_data['staff_name'];
                     <form id="updateForm">
                         <!-- Add your form elements here -->
                         <!-- <button type="button" class="btn btn-primary" data-step="1">Receive</button>
-                        <button type="button" class="btn btn-primary" data-step="2">In Progress</button>
-                        <button type="button" class="btn btn-primary" data-step="3">Finish</button>
-                        <button type="button" class="btn btn-primary" data-step="4">Take Away</button> -->
-                        
+                            <button type="button" class="btn btn-primary" data-step="2">In Progress</button>
+                            <button type="button" class="btn btn-primary" data-step="3">Finish</button>
+                            <button type="button" class="btn btn-primary" data-step="4">Take Away</button> -->
+
                         <button type="button" class="btn btn-primary">Update Progress 1</button>
                         <button type="button" id="updateProgressButton" class="btn btn-primary">Update Progress</button>
                     </form>
@@ -185,7 +193,7 @@ $staff_name = $staff_data['staff_name'];
         </div>
     </div>
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script1.js"></script>
     <script src="task.js"></script>

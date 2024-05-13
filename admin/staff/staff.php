@@ -1,5 +1,5 @@
 <?php
-include('database/connection.php');
+include ('database/connection.php');
 
 $staffIC = $_GET['sid'];
 
@@ -34,6 +34,7 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,6 +45,7 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="staff.css">
 </head>
+
 <body>
     <div class="wrapper">
         <aside id="sidebar" class="js-sidebar">
@@ -73,7 +75,8 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
                         </a>
                         <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="updatestaffprofile.php?sid=<?= $staffIC; ?>" class="sidebar-link">Update Info</a>
+                                <a href="updatestaffprofile.php?sid=<?= $staffIC; ?>" class="sidebar-link">Update
+                                    Info</a>
                             </li>
                         </ul>
                     </li>
@@ -85,13 +88,15 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="registercustomer.php?sid=<?= $staffIC; ?>" class="sidebar-link">Register Customer</a>
+                                <a href="registercustomer.php?sid=<?= $staffIC; ?>" class="sidebar-link">Register
+                                    Customer</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="s_customerinfo.php?sid=<?= $staffIC; ?>" class="sidebar-link">Customer Information</a>
+                                <a href="s_customerinfo.php?sid=<?= $staffIC; ?>" class="sidebar-link">Customer
+                                    Information</a>
                             </li>
                         </ul>
-                    </li>    
+                    </li>
                     <!--Other Section-->
                     <li class="sidebar-header">
                         Task
@@ -103,22 +108,16 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
                             Repairing
                         </a>
                         <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <!-- <li class="sidebar-item">
-                                <a href="repairtask.php" class="sidebar-link">Repair Task</a>
-                            </li> -->
+
                             <li class="sidebar-item">
-                                <a href="updaterepairprogress.php?sid=<?= $staffIC; ?>" class="sidebar-link">Task Management</a>
+                                <a href="updaterepairprogress.php?sid=<?= $staffIC; ?>" class="sidebar-link">Task
+                                    Management</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-    <div class="btnl">
-        <!-- <button class="logout">
-            <img width="32" height="32" src="https://img.icons8.com/glyph-neue/32/power-off-button.png" alt="power-off-button"/>
-            <a href="/admin/login.php">Logout</a>
-        </button> -->
-    </div>
-</li>
+
+                    </li>
                 </ul>
             </div>
         </aside>
@@ -136,8 +135,7 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
                                 <img src="../images/user.png" class="avatar img-fluid rounded" alt="">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <!-- <a href="#" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Setting</a> -->
+
                                 <a href="../login.php" class="dropdown-item">Logout</a>
                             </div>
                         </li>
@@ -164,8 +162,7 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
                                         </div>
                                         <div class="col-6 align-self-end text-end">
                                             <!--Part 2-->
-                                            <img src="images/logo1.png" class="img-fluid illustration-img"
-                                                alt="">
+                                            <img src="images/logo1.png" class="img-fluid illustration-img" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +175,8 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
                                         <div class="flex-grow-1">
                                             <h4 class="mb-2">
                                                 Task to do : <br><br>
-                                                <?php echo $total_assigned_customers; ?> Task <i class="fa-solid fa-circle fa-xs" style="color: red;"></i>
+                                                <?php echo $total_assigned_customers; ?> Task <i
+                                                    class="fa-solid fa-circle fa-xs" style="color: red;"></i>
                                             </h4>
                                             <!-- <h4 class="mb-2">
                                                 <?php //echo $total_customers; ?> Uncomplete Task <i class="fa-solid fa-circle fa-xs" style="color: #f51414;"></i>
@@ -203,15 +201,13 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
                             <h5 class="card-title">
                                 Recent Customer
                             </h5><br>
-                            <!-- <h6 class="card-subtitle text-muted">
-                                Recent booking from customer
-                            </h6> -->
+
                         </div>
                         <div class="card-body">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <!-- <th scope="col">No</th> -->
+
                                         <th scope="col">No.</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Phone Number</th>
@@ -221,30 +217,30 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
                                 </thead>
                                 <tbody>
                                     <?php
-                            
+
                                     $count = 1;
 
-                                    while($data = $resultdis->fetch_assoc()) {
-                                    ?>
-                                    <tr class="tr">
-                                        <td><?= $count ?>.</td>
-                                        <td><?= $data['custname']; ?></td>
-                                        <td><?= $data['custphone']; ?></td>
-                                        <td><?= $data['status']; ?></td>
-                                        <td>
-                                            <?php
-                                            if ($data['payment'] === 'Unpaid') {
-                                                echo '<button class="status btn-danger">' . $data['payment'] . '</button>';
-                                            } else {
-                                                echo '<button class="pay btn-success">' . $data['payment'] . '</button>';
-                                            }
-                                            ?>
-                                        </td>
+                                    while ($data = $resultdis->fetch_assoc()) {
+                                        ?>
+                                        <tr class="tr">
+                                            <td><?= $count ?>.</td>
+                                            <td><?= $data['custname']; ?></td>
+                                            <td><?= $data['custphone']; ?></td>
+                                            <td><?= $data['status']; ?></td>
+                                            <td>
+                                                <?php
+                                                if ($data['payment'] === 'Unpaid') {
+                                                    echo '<button class="status btn-danger">' . $data['payment'] . '</button>';
+                                                } else {
+                                                    echo '<button class="pay btn-success">' . $data['payment'] . '</button>';
+                                                }
+                                                ?>
+                                            </td>
 
-                                        
-                                    </tr>
-                                    <?php
-                                    $count++; 
+
+                                        </tr>
+                                        <?php
+                                        $count++;
                                     }
                                     ?>
                                 </tbody>
@@ -256,7 +252,7 @@ $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assi
         </div>
     </div>
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script1.js"></script>
 </body>

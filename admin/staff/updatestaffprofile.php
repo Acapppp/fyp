@@ -1,50 +1,7 @@
 <?php
-include('database/connection.php');
+include ('database/connection.php');
 
-// $staffIC = $_GET['sid'];
 
-// $display = "SELECT custname, custic, custphone, devicetype, brand, model, problem 
-//             FROM custinfo";
-
-// $resultdis = $con->query($display);
-
-// // Fetch data from the database
-// $sql = "SELECT staff_ic, staff_name, staff_phone, staff_gender, staff_email, staffusername, staff_pass FROM staff_info";
-// $result = mysqli_query($con, $sql);
-
-// $row = mysqli_fetch_assoc($result);
-
-// // Fetch staff name and image URL from the database
-// $sql = "SELECT staff_name FROM staff_info"; // Adjust the query as per your table structure
-// $stmt = $con->query($sql);
-// $staff_data = $stmt->fetch_assoc();
-
-// // Assign fetched data to variables
-// $staff_name = $staff_data['staff_name'];
-
-// $result = mysqli_query($con, "SELECT * FROM staff_info");
-// $row = mysqli_fetch_assoc($result);
-
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     $staff_name = $_POST['staff_name'];
-//     $staff_ic = $_POST['staff_ic'];
-//     $staff_phone = $_POST['staff_phone'];
-//     $staff_email = $_POST['staff_email'];
-//     $staff_gender = $_POST['staff_gender'];
-//     $s_username = $_POST['s_username'];
-//     $new_pass = $_POST['new_pass'];
-
-//     $sql = "UPDATE staff_info SET staff_phone='$staff_phone', staff_email='$staff_email', staff_gender='$staff_gender', staffusername='$s_username', staff_pass='$new_pass' WHERE staff_ic='$staff_ic'";
-
-//     if (mysqli_query($con, $sql)) {
-//         // Display success message using JavaScript alert
-//         echo '<script>alert("Record updated successfully");</script>';
-//     } else {
-//         echo "Error updating record: " . mysqli_error($con);
-//     }
-// }
-
-// Retrieve staff IC from the URL
 $staffIC = $_GET['sid'];
 
 // Fetch staff details from the database based on staff IC
@@ -93,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="staff.css">
     <link rel="stylesheet" href="profile.css">
 </head>
+
 <body>
     <div class="wrapper">
         <aside id="sidebar" class="js-sidebar">
@@ -121,7 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </a>
                         <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="updatestaffprofile.php?sid=<?= $staffIC; ?>" class="sidebar-link">Update Info</a>
+                                <a href="updatestaffprofile.php?sid=<?= $staffIC; ?>" class="sidebar-link">Update
+                                    Info</a>
                             </li>
                         </ul>
                     </li>
@@ -133,10 +92,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="registercustomer.php?sid=<?= $staffIC; ?>" class="sidebar-link">Register Customer</a>
+                                <a href="registercustomer.php?sid=<?= $staffIC; ?>" class="sidebar-link">Register
+                                    Customer</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="s_customerinfo.php?sid=<?= $staffIC; ?>" class="sidebar-link">Customer Information</a>
+                                <a href="s_customerinfo.php?sid=<?= $staffIC; ?>" class="sidebar-link">Customer
+                                    Information</a>
                             </li>
                         </ul>
                     </li>
@@ -151,20 +112,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             Repairing
                         </a>
                         <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            
+
                             <li class="sidebar-item">
-                                <a href="updaterepairprogress.php?sid=<?= $staffIC; ?>" class="sidebar-link">Task Management</a>
+                                <a href="updaterepairprogress.php?sid=<?= $staffIC; ?>" class="sidebar-link">Task
+                                    Management</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-    <div class="btnl">
-        <!-- <button class="logout">
-            <img width="32" height="32" src="https://img.icons8.com/glyph-neue/32/power-off-button.png" alt="power-off-button"/>
-            <a href="/admin/login.php">Logout</a>
-        </button> -->
-    </div>
-</li>
+                        <div class="btnl">
+
+                        </div>
+                    </li>
                 </ul>
             </div>
         </aside>
@@ -182,8 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <img src="../images/user.png" class="avatar img-fluid rounded" alt="">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <!-- <a href="#" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Setting</a> -->
+
                                 <a href="../login.php" class="dropdown-item">Logout</a>
                             </div>
                         </li>
@@ -192,10 +150,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </nav>
             <!--Bottom Bar-->
             <main class="content px-3 py-2">
-                <!--INSERT HERE-->
+
                 <!--Update Profile-->
                 <div class="row gutters">
-               
+
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                         <div class="card h-100">
                             <div class="card-body">
@@ -207,31 +165,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="fullName">Full Name</label>
-                                                <input type="text" class="form-control" id="fullName" name="staff_name" value="<?php echo $row['staff_name']; ?>" readonly>
+                                                <input type="text" class="form-control" id="fullName" name="staff_name"
+                                                    value="<?php echo $row['staff_name']; ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="eMail">IC Number</label>
-                                                <input type="text" class="form-control" id="eMail" name="staff_ic" value="<?php echo $row['staff_ic']; ?>" readonly>
+                                                <input type="text" class="form-control" id="eMail" name="staff_ic"
+                                                    value="<?php echo $row['staff_ic']; ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="phone">Phone</label>
-                                                <input type="text" class="form-control" id="phone" name="staff_phone" value="<?php echo $row['staff_phone']; ?>">
+                                                <input type="text" class="form-control" id="phone" name="staff_phone"
+                                                    value="<?php echo $row['staff_phone']; ?>">
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="website">Email</label>
-                                                <input type="email" class="form-control" id="website" name="staff_email" value="<?php echo $row['staff_email']; ?>">
+                                                <input type="email" class="form-control" id="website" name="staff_email"
+                                                    value="<?php echo $row['staff_email']; ?>">
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="website">Gender</label>
-                                                <input type="text" class="form-control" id="website" name="staff_gender" value="<?php echo $row['staff_gender']; ?>" readonly>
+                                                <input type="text" class="form-control" id="website" name="staff_gender"
+                                                    value="<?php echo $row['staff_gender']; ?>" readonly>
                                             </div>
                                         </div>
 
@@ -243,35 +206,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="Street">Username</label>
-                                                <input type="name" class="form-control" id="Street" name="s_username" value="<?php echo $row['staffusername']; ?>">
+                                                <input type="name" class="form-control" id="Street" name="s_username"
+                                                    value="<?php echo $row['staffusername']; ?>">
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="ciTy">Old Password</label>
-        <div class="password-container">
-            <input type="password" class="form-control" id="ciTy" name="old_pass" value="<?php echo $row['staff_pass']; ?>" readonly>
-            <span class="toggle-password" onclick="togglePasswordVisibility('ciTy')">
-                <i class="fas fa-eye-slash"></i>
-            </span>
-        </div>
-    </div>
-</div>
+                                            <div class="form-group">
+                                                <label for="ciTy">Old Password</label>
+                                                <div class="password-container">
+                                                    <input type="password" class="form-control" id="ciTy"
+                                                        name="old_pass" value="<?php echo $row['staff_pass']; ?>"
+                                                        readonly>
+                                                    <span class="toggle-password"
+                                                        onclick="togglePasswordVisibility('ciTy')">
+                                                        <i class="fas fa-eye-slash"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
-                                                <label for="sTate">New Password</label> 
+                                                <label for="sTate">New Password</label>
                                                 <input type="password" class="form-control" id="sTate" name="new_pass">
-                                                
+
                                             </div>
                                         </div>
-        
+
                                     </div>
                                     <div class="row gutters">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <div class="text-right">
-                                                <button type="button" name="cancel" class="cancel">Cancel</button>
                                                 <button type="submit" name="submit" class="submit">Update</button>
+                                                <button type="button" name="cancel" class="cancel">Cancel</button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -285,19 +253,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <script>
         function togglePasswordVisibility(inputId) {
-    var input = document.getElementById(inputId);
-    var icon = input.parentElement.querySelector('.toggle-password i');
-    
-    if (input.type === "password") {
-        input.type = "text";
-        icon.classList.remove('fa-eye-slash');
-        icon.classList.add('fa-eye');
-    } else {
-        input.type = "password";
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-    }
-}
+            var input = document.getElementById(inputId);
+            var icon = input.parentElement.querySelector('.toggle-password i');
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                input.type = "password";
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
+        }
 
     </script>
 
