@@ -4,6 +4,22 @@ include('database/connection.php');
 $display = "SELECT * FROM custinfo";
 $resultdis = $con->query($display);
 
+
+// if(isset($_GET['custic'])) {
+//     $custic = $_GET['custic'];
+//     $sql = "SELECT * FROM custinfo WHERE custic = '$custic'";
+//     $result = $con->query($sql);
+//     $customerData = $result->fetch_assoc();
+// }
+
+
+
+
+// if(isset ($_POST['btnsearch'])){
+//     $search = $_POST['namesearch'];
+//     $sqlsearch = "SELECT * FROM custinfo WHERE custic LIKE '$search%'";
+//     $resultdis = $con->query($sqlsearch);
+// }
 ?>
 
 <!DOCTYPE html>
@@ -201,7 +217,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, delete it!',
+                timer: 5000 // Adjust this value to set the duration (in milliseconds)
             }).then((result) => {
                 if (result.isConfirmed) {
                     // You can perform AJAX request or form submission to delete the data
@@ -216,6 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
 </script>
                                 </a>
 
