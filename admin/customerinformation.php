@@ -4,22 +4,6 @@ include('database/connection.php');
 $display = "SELECT * FROM custinfo";
 $resultdis = $con->query($display);
 
-
-// if(isset($_GET['custic'])) {
-//     $custic = $_GET['custic'];
-//     $sql = "SELECT * FROM custinfo WHERE custic = '$custic'";
-//     $result = $con->query($sql);
-//     $customerData = $result->fetch_assoc();
-// }
-
-
-
-
-// if(isset ($_POST['btnsearch'])){
-//     $search = $_POST['namesearch'];
-//     $sqlsearch = "SELECT * FROM custinfo WHERE custic LIKE '$search%'";
-//     $resultdis = $con->query($sqlsearch);
-// }
 ?>
 
 <!DOCTYPE html>
@@ -197,6 +181,7 @@ $resultdis = $con->query($display);
                                             data-model="<?= $data['model']; ?>"
                                             data-problem="<?= $data['problem']; ?>"
                                             data-regdate="<?= $data['regdate']; ?>"
+                                            data-technician="<?= $data['technician']; ?>"
                                             data-price="<?= $data['price']; ?>"
                                             data-staffusername="<?= $data['staff_username']; ?>">View</button>
                                             <a href="removecustomer.php" class="btn btn-danger delete-btn" data-cid="<?=$data['custic'];?>">
@@ -314,6 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var model = this.getAttribute('data-model');
         var problem = this.getAttribute('data-problem');
         var regdate = this.getAttribute('data-regdate');
+        var technician = this.getAttribute('data-technician');
         var price = this.getAttribute('data-price');
 
         var customerDetailsHTML = `
@@ -326,7 +312,9 @@ document.addEventListener('DOMContentLoaded', function() {
           <p><strong>Model:</strong> ${model}</p>
           <p><strong>Problem:</strong> ${problem}</p>
           <p><strong>Registration Date:</strong> ${regdate}</p>
-          <p><strong>Price:RM</strong> ${price}</p>
+          <p><strong>Technician Fees:RM</strong> ${technician}</p>
+          <p><strong>Repair Price:RM</strong> ${price}</p>
+          
           
         `;
 

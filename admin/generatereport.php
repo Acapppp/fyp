@@ -1,7 +1,7 @@
 <?php
     include('database/connection.php');
 
-    $display = "SELECT custname, custic, custphone, payment, price, regdate FROM custinfo";
+    $display = "SELECT custname, custic, custphone, payment, price, regdate, technician FROM custinfo";
 
     // Check if the form is submitted with start and end dates
     if(isset($_POST['btn_filter'])) {
@@ -17,6 +17,7 @@
 
     // Initialize total price variable
     $totalPrice = 0;
+    $totalTechnicianFees = 0;
 
     // if(isset($_POST['btnsearch'])) {
     //     $search = $_POST['namesearch'];
@@ -80,7 +81,7 @@
 </head>
 
 <body>
-<h1>Sale Report</h1>
+<h1>BAAM Uptown Sale Report</h1>
     <!-- Form to input start date and end date -->
     <form method="POST" action="">
         <label for="start_date">Start Date:</label>
@@ -97,7 +98,8 @@
                     <th scope="col">IC Number</th>
                     <th scope="col">Phone Number</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">Technician Fees</th>
+                    <th scope="col">Repair Sales</th>
                 </tr>
             </thead>
             <tbody>
@@ -107,12 +109,14 @@
                     while($data = $resultdis->fetch_assoc()) {
                         // Add each price to the total
                         $totalPrice += $data['price'];
+                        $totalTechnicianFees += $data['technician'];
                 ?>
                 <tr class="tr">
                     <td><?= $data['custname']; ?></td>
                     <td><?= $data['custic']; ?></td>
                     <td><?= $data['custphone']; ?></td>
                     <td><?= $data['regdate']; ?></td>
+                    <td>RM<?= $data['technician']; ?></td>
                     <td>RM<?= $data['price']; ?></td>
                 </tr>
                 <?php
@@ -123,7 +127,9 @@
                 <tr>
                     <td colspan="3"></td>
                     <td><strong>Total:</strong></td>
+                    <td>RM<?= number_format($totalTechnicianFees, 2); ?></td>
                     <td>RM<?= number_format($totalPrice, 2); ?></td>
+                    
                 </tr>
             </tbody>
         </table>
