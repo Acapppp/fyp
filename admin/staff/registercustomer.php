@@ -126,12 +126,12 @@ $staffIC = $_GET['sid'];
                             id="myForm">
                             <div class="input-box">
                                 <label class="lab">Name</label>
-                                <input type="text" placeholder="Enter name" name="custname" required />
+                                <input type="text" placeholder="Enter customer name" name="custname" required />
                             </div>
 
                             <div class="input-box">
-                                <label class="required">IC Number (number without "-")</label>
-                                <input type="tel" placeholder="xxxxxx - xx - xxxx" name="custic" id="ic-number"
+                                <label class="lab">IC Number (number without "-")</label>
+                                <input type="tel" placeholder="Enter customer ic" name="custic" id="ic-number"
                                     onblur="icNumberFormat()" maxlength="12" required />
                                 <script>
                                     function formatIcNumber(value) {
@@ -154,14 +154,14 @@ $staffIC = $_GET['sid'];
 
                             <div class="input-box">
                                 <label class="lab">Email</label>
-                                <input type="email" placeholder="Enter email" name="custmail" required />
+                                <input type="email" placeholder="Enter customer email" name="custmail" required />
                             </div>
 
 
                             <div class="column">
                                 <div class="input-box">
                                     <label class="lab">Phone Number</label>
-                                    <input placeholder="(010)-000-0000" name="custphone" id="phone-number"
+                                    <input placeholder="Enter phone number" name="custphone" id="phone-number"
                                         oninput="validateInput()" maxlength="22" required />
                                     <script>
                                         function formatPhoneNumber(value) {
@@ -196,7 +196,7 @@ $staffIC = $_GET['sid'];
                                 </div>
                                 <div class="input-box">
                                     <label class="lab">Date</label>
-                                    <input type="text" placeholder="DD.MM.YYYY" name="regdate" id="date-input"
+                                    <input type="date" placeholder="DD.MM.YYYY" name="regdate" id="date-input"
                                         readonly />
                                     <script>
                                         var today = new Date();
