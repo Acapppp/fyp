@@ -1,7 +1,23 @@
 <?php
 include('database/connection.php');
 
-$display = "SELECT * FROM custinfo";
+$results_per_page = 3;
+
+$count_query = "SELECT COUNT(*) AS total_customers FROM custinfo";
+$count_result = $con->query($count_query);
+$total_customers = $count_result->fetch_assoc()['total_customers'];
+
+$total_pages = ceil($total_customers / $results_per_page);
+
+if (!isset($_GET['page']) || !is_numeric($_GET['page']) || $_GET['page'] <= 0 || $_GET['page'] > $total_pages) {
+    $current_page = 1;
+} else {
+    $current_page = $_GET['page'];
+}
+
+$start_record = ($current_page - 1) * $results_per_page;
+
+$display = "SELECT * FROM custinfo ORDER BY regdate DESC LIMIT $start_record, $results_per_page";
 $resultdis = $con->query($display);
 
 
@@ -173,7 +189,8 @@ $resultdis = $con->query($display);
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $count = 1;
+                                    $start_number = ($current_page - 1) * $results_per_page + 1; // Calculate starting number for each page
+                                    $count = $start_number;
 
                                     while($data = $resultdis->fetch_assoc()) {
                                     ?>
@@ -201,40 +218,40 @@ $resultdis = $con->query($display);
                                             data-price="<?= $data['price']; ?>"
                                             data-staffusername="<?= $data['staff_username']; ?>">View</button>
                                             <a href="removecustomer.php" class="btn btn-danger delete-btn" data-cid="<?=$data['custic'];?>">
-    <i class="fas fa-trash-alt"></i>
-</a>
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.delete-btn').forEach(function(button) {
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-            var cid = this.getAttribute('data-cid');
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                timer: 5000 // Adjust this value to set the duration (in milliseconds)
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // You can perform AJAX request or form submission to delete the data
-                    window.location.href = 'removecustomer.php?cid=' + cid;
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    );
-                }
-            });
-        });
-    });
-});
+                                            <script>
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                document.querySelectorAll('.delete-btn').forEach(function(button) {
+                                                    button.addEventListener('click', function(event) {
+                                                        event.preventDefault();
+                                                        var cid = this.getAttribute('data-cid');
+                                                        Swal.fire({
+                                                            title: 'Are you sure?',
+                                                            text: "You won't be able to revert this!",
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Yes, delete it!',
+                                                            timer: 5000 // Adjust this value to set the duration (in milliseconds)
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                // You can perform AJAX request or form submission to delete the data
+                                                                window.location.href = 'removecustomer.php?cid=' + cid;
+                                                                Swal.fire(
+                                                                    'Deleted!',
+                                                                    'Your file has been deleted.',
+                                                                    'success'
+                                                                );
+                                                            }
+                                                        });
+                                                    });
+                                                });
+                                            });
 
-</script>
+                                            </script>
                                 </a>
 
                                             <br>
@@ -254,6 +271,19 @@ document.addEventListener('DOMContentLoaded', function() {
                                     ?>
                                 </tbody>
                             </table>
+                            <div class="pagination">
+                                <?php if ($current_page > 1): ?>
+                                    <a href="?page=<?php echo $current_page - 1; ?>">Previous</a>
+                                <?php endif; ?>
+
+                                <?php for ($page = 1; $page <= $total_pages; $page++): ?>
+                                    <a href="?page=<?php echo $page; ?>" <?php echo ($page == $current_page) ? 'class="active"' : ''; ?>><?php echo $page; ?></a>
+                                <?php endfor; ?>
+
+                                <?php if ($current_page < $total_pages): ?>
+                                    <a href="?page=<?php echo $current_page + 1; ?>">Next</a>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>

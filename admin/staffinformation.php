@@ -1,17 +1,33 @@
 <?php
 include('database/connection.php');
 
-$display = "SELECT staff_ic, staff_name, staff_gender, staff_age, staff_phone, staff_email, image_url 
-            FROM staff_info";
+$results_per_page = 3;
 
+$count_query = "SELECT COUNT(*) AS total_staffs FROM staff_info";
+$count_result = $con->query($count_query);
+$total_staffs = $count_result->fetch_assoc()['total_staffs'];
+
+$total_pages = ceil($total_staffs / $results_per_page);
+
+if (!isset($_GET['page']) || !is_numeric($_GET['page']) || $_GET['page'] <= 0 || $_GET['page'] > $total_pages) {
+    $current_page = 1;
+} else {
+    $current_page = $_GET['page'];
+}
+
+$start_record = ($current_page - 1) * $results_per_page;
+
+$display = "SELECT * FROM staff_info LIMIT $start_record, $results_per_page";
 $resultdis = $con->query($display);
 
-if(isset ($_POST['btnsearch'])){
+// search
+if(isset($_POST['btnsearch'])){
     $search = $_POST['namesearch'];
     $sqlsearch = "SELECT * FROM staff_info WHERE staff_ic LIKE '$search%'";
     $resultdis = $con->query($sqlsearch);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -160,7 +176,8 @@ if(isset ($_POST['btnsearch'])){
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $count = 1;
+                                    $start_number = ($current_page - 1) * $results_per_page + 1; // Calculate starting number for each page
+                                    $count = $start_number;
 
                                     while($data = $resultdis->fetch_assoc()) {
                                     ?>
@@ -184,6 +201,19 @@ if(isset ($_POST['btnsearch'])){
                                     ?>
                                 </tbody>
                             </table>
+                            <div class="pagination">
+                                <?php if ($current_page > 1): ?>
+                                    <a href="?page=<?php echo $current_page - 1; ?>">Previous</a>
+                                <?php endif; ?>
+
+                                <?php for ($page = 1; $page <= $total_pages; $page++): ?>
+                                    <a href="?page=<?php echo $page; ?>" <?php echo ($page == $current_page) ? 'class="active"' : ''; ?>><?php echo $page; ?></a>
+                                <?php endfor; ?>
+
+                                <?php if ($current_page < $total_pages): ?>
+                                    <a href="?page=<?php echo $current_page + 1; ?>">Next</a>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>

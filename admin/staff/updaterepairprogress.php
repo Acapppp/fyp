@@ -30,7 +30,7 @@ $stmt_count->bind_param('s', $staffIC);
 $stmt_count->execute();
 $total_assigned_customers = $stmt_count->get_result()->fetch_assoc()['total_assigned_customers'];
 
-$display = "SELECT * FROM custinfo where staff_ic = '$staffIC'";
+$display = "SELECT * FROM custinfo where staff_ic = '$staffIC' ORDER BY regdate DESC";
 
 $resultdis = $con->query($display);
 
@@ -229,7 +229,8 @@ $staff_name = $staff_data['staff_name'];
                                                     data-brand="<?= $data['brand']; ?>" data-model="<?= $data['model']; ?>"
                                                     data-problem="<?= $data['problem']; ?>"
                                                     data-regdate="<?= $data['regdate']; ?>"
-                                                    data-payment="<?= $data['payment']; ?>">View Info</button><br>
+                                                    data-payment="<?= $data['payment']; ?>"
+                                                    data-price="<?= $data['price']; ?>">View Info</button><br>
                                                 <a href="updatestatus.php?sid=<?= $staffIC ?>&cid=<?= $data['custic']; ?>"><button
                                                         class="cust">Update</button></a><br>
                                                 <!-- <button class="cust" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button> -->

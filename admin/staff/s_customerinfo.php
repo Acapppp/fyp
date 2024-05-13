@@ -25,7 +25,7 @@ if (!isset($_GET['page']) || !is_numeric($_GET['page']) || $_GET['page'] <= 0 ||
 $start_record = ($current_page - 1) * $results_per_page;
 
 // Fetch records for the current page
-$display_query = "SELECT * FROM custinfo WHERE staff_ic = '$staffIC' LIMIT $start_record, $results_per_page";
+$display_query = "SELECT * FROM custinfo WHERE staff_ic = '$staffIC' ORDER BY regdate DESC LIMIT $start_record, $results_per_page";
 $resultdis = $con->query($display_query);
 
 if (isset($_POST['btnsearch'])) {
@@ -211,7 +211,8 @@ if (isset($_POST['btnsearch'])) {
                                                     data-brand="<?= $data['brand']; ?>" data-model="<?= $data['model']; ?>"
                                                     data-problem="<?= $data['problem']; ?>"
                                                     data-regdate="<?= $data['regdate']; ?>"
-                                                    data-payment="<?= $data['payment']; ?>">View Info</button><br>
+                                                    data-payment="<?= $data['payment']; ?>"
+                                                    data-price="<?= $data['price']; ?>">View Info</button><br>
                                             </td>
                                         </tr>
                                         <?php

@@ -16,7 +16,7 @@ $stmt->close();
 $display = "SELECT custname, custphone, payment, status 
             FROM custinfo
             WHERE staff_ic = ?
-            ORDER BY custic DESC
+            ORDER BY regdate DESC
             LIMIT 4"; // Fetch only the latest 4 records assigned to the staff member
 
 $stmt = $con->prepare($display);

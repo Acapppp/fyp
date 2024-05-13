@@ -16,6 +16,10 @@ $con->query($updatestaffic);
 // Perform other necessary actions or redirect as needed
 
 // For example, if you want to redirect back to the page where the assignment was made:
-header("Location: customerinformation.php?cid= $custic");
+echo "<script>
+        alert('Customer has been assigned.');
+        window.location.href = 'customerinformation.php';
+    </script>";
+
 exit(); // Make sure to exit after redirection
 ?>

@@ -55,8 +55,9 @@ if(isset ($_POST['btnsearch'])){
                     Are you sure you want to assign this task?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <a id="assignButton" href="assign.php" class="btn btn-primary">Assign</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    
                 </div>
             </div>
         </div>

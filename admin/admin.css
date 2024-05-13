@@ -244,3 +244,37 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
 }
 
 
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination a {
+    color: #007bff;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination a.disabled {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.pagination a.disabled:hover {
+    background-color: transparent;
+}
+
+
